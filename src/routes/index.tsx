@@ -1,19 +1,14 @@
 import React, { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "../components/layout/Layout";
-import { Loader2 } from "lucide-react";
+import Loader from "../components/common/Loader";
 
 // Lazy Load Pages
 const Home = lazy(() => import("../pages/Home"));
 const ErrorPage = lazy(() => import("../pages/Error"));
-// Added missing imports below:
 
-// Global Loading Component
-const PageLoader = () => (
-  <div className="h-screen w-full flex items-center justify-center bg-white dark:bg-[#0a0a0a]">
-    <Loader2 className="w-10 h-10 text-orange-500 animate-spin" />
-  </div>
-);
+// Global Loading Component using the new premium Loader
+const PageLoader = () => <Loader />;
 
 export const router = createBrowserRouter([
   {
@@ -28,18 +23,11 @@ export const router = createBrowserRouter([
         path: "/", 
         element: <Home /> 
       },
-  
-    
-     
+      { 
+        path: "*", 
+        element: <ErrorPage /> 
+      },
     ],
-  },
-  { 
-    path: "*", 
-    element: (
-      <Suspense fallback={<PageLoader />}>
-        <ErrorPage />
-      </Suspense>
-    ) 
   },
 ]);
 

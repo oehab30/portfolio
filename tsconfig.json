@@ -4,6 +4,7 @@
     "tsBuildInfoFile": "./node_modules/.tsbuildinfo",
     "moduleResolution": "bundler",
     "isolatedModules": true,
+    "skipLibCheck": true,
     "module": "ESNext",
     "jsx": "react-jsx",
 

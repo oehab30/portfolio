@@ -2,6 +2,7 @@ import Hero from "../components/hero/Hero";
 import Stack from "../components/stack/Stack";
 import Projects from "../components/projects/Projects";
 import About from "@/components/about/About";
+import Contact from "@/components/contact/Contact";
 
 function Home() {
   return (
@@ -18,6 +19,8 @@ function Home() {
       <section id="projects">
         <Projects />
       </section>
+      
+      <Contact />
       
     </>
   );

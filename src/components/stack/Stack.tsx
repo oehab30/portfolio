@@ -1,69 +1,65 @@
 import { motion } from "framer-motion";
-import { Code, Layers, Zap } from "lucide-react";
+import SectionTitle from "../SectionTitle";
 
-const services = [
-  {
-    icon: <Code size={32} />,
-    title: "Digital Products",
-    description: "Engineering robust digital platforms, apps, and websites that drive business growth and user engagement."
-  },
-  {
-    icon: <Layers size={32} />,
-    title: "Brand Identity",
-    description: "Crafting distinct visual narratives and brand strategies that resonate with your audience and stand the test of time."
-  },
-  {
-    icon: <Zap size={32} />,
-    title: "Growth Strategy",
-    description: "Data-driven marketing campaigns and SEO optimization designed to scale your reach and maximize ROI."
-  }
+// Tech stack data with SimpleIcons URLs
+const technologies = [
+  { name: "React", color: "#61DAFB", icon: "https://cdn.simpleicons.org/react/61DAFB" },
+  { name: "TypeScript", color: "#3178C6", icon: "https://cdn.simpleicons.org/typescript/3178C6" },
+  { name: "Next.js", color: "#FFFFFF", icon: "https://cdn.simpleicons.org/nextdotjs/FFFFFF" }, 
+  { name: "Tailwind", color: "#06B6D4", icon: "https://cdn.simpleicons.org/tailwindcss/06B6D4" },
+  { name: "Three.js", color: "#FFFFFF", icon: "https://cdn.simpleicons.org/three.js/FFFFFF" },
+  { name: "Framer Motion", color: "#0055FF", icon: "https://cdn.simpleicons.org/framer/0055FF" },
+  { name: "JavaScript", color: "#F7DF1E", icon: "https://cdn.simpleicons.org/javascript/F7DF1E" },
+  { name: "HTML5", color: "#E34F26", icon: "https://cdn.simpleicons.org/html5/E34F26" },
+  { name: "Node.js", color: "#339933", icon: "https://cdn.simpleicons.org/nodedotjs/339933" },
+  { name: "Vite", color: "#646CFF", icon: "https://cdn.simpleicons.org/vite/646CFF" },
+  { name: "Git", color: "#F05032", icon: "https://cdn.simpleicons.org/git/F05032" },
+  { name: "GitHub", color: "#F05032", icon: "https://cdn.simpleicons.org/github/FFFFFF" },
 ];
 
-const Stack = () => {
+export default function Stack() {
   return (
-    <section className="py-20 px-6 relative z-10 bg-background/50 backdrop-blur-sm border-t border-white/5">
-      <div className="max-w-6xl mx-auto">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16 text-center"
-        >
-          <span className="text-primary font-mono tracking-widest uppercase text-sm">Skills & Expertise</span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-2">What I Do</h2>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="group relative p-8 border border-white/5 hover:border-primary/30 bg-card/40 transition-colors duration-500 backdrop-blur-sm"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
-              <div className="relative z-10">
-                <div className="mb-6 text-muted-foreground group-hover:text-primary transition-colors duration-500 transform group-hover:scale-105 origin-left">
-                  {service.icon}
-                </div>
-                <h3 className="text-2xl font-bold mb-4 font-heading text-foreground group-hover:text-primary transition-colors duration-300">{service.title}</h3>
-                <p className="text-muted-foreground leading-relaxed font-light">
-                  {service.description}
-                </p>
-              </div>
-
-              {/* Corner Accents - Cinematic Gold */}
-              <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-primary/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-primary/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </motion.div>
-          ))}
+    <section className=" mb-24 mt-24 py-24 relative overflow-hidden" id="stack">
+        <div className="container mx-auto px-6 relative z-10">
+            <div className="mb-16 text-center">
+            <SectionTitle title="Front End Skills" subtitle="Tech Arsenal" className="text-center" />
+            </div>
+            
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 max-w-6xl mx-auto">
+                 {technologies.map((tech, index) => (
+                    <motion.div 
+                        key={tech.name}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.05 }}
+                        className="group flex flex-col items-center justify-center gap-4 p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all duration-300 hover:bg-white/10"
+                    >
+                         <motion.div
+                            animate={{ 
+                                y: [0, -10, 0],
+                            }}
+                            transition={{ 
+                                duration: 3, 
+                                repeat: Infinity, 
+                                ease: "easeInOut",
+                                delay: index * 0.2 // Stagger the floating effect
+                            }}
+                            className="relative w-16 h-16 flex items-center justify-center"
+                         >
+                             {/* Glow effect behind icon */}
+                             <div 
+                                className="absolute inset-0 blur-2xl opacity-0 group-hover:opacity-40 transition-opacity duration-500"
+                                style={{ backgroundColor: tech.color }}
+                             />
+                             <img src={tech.icon} alt={tech.name} className="w-12 h-12 relative z-10 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]" />
+                         </motion.div>
+                         
+                         <span className="font-bold text-sm tracking-wide text-muted-foreground group-hover:text-white transition-colors">{tech.name}</span>
+                    </motion.div>
+                 ))}
+            </div>
         </div>
-      </div>
     </section>
   );
-};
-
-export default Stack;
+}

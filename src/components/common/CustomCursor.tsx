@@ -58,7 +58,7 @@ const CustomCursor = () => {
 
     return (
         <div
-            className={`fixed top-0 left-0 pointer-events-none  mix-blend-difference
+            className={`fixed top-0 left-0 pointer-events-none z-9999 mix-blend-difference
                 ${hidden ? "opacity-0" : "opacity-100"}
             `}
             style={cursorStyle}
