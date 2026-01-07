@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import SectionTitle from "../SectionTitle";
+import SectionTitle from "../projects/SectionTitle";
 
 // Tech stack data with SimpleIcons URLs
 const technologies = [
@@ -20,6 +20,9 @@ const technologies = [
 export default function Stack() {
   return (
     <section className=" mb-24 mt-24 py-24 relative overflow-hidden" id="stack">
+        <div className="absolute top-0 right-10 text-[25vw] font-bold text-foreground/5 leading-none pointer-events-none select-none">
+        03
+      </div>
         <div className="container mx-auto px-6 relative z-10">
             <div className="mb-16 text-center">
             <SectionTitle title="Front End Skills" subtitle="Tech Arsenal" className="text-center" />
@@ -33,7 +36,7 @@ export default function Stack() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: index * 0.05 }}
-                        className="group flex flex-col items-center justify-center gap-4 p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all duration-300 hover:bg-white/10"
+                        className="group flex flex-col items-center justify-center gap-4 p-6 rounded-2xl bg-secondary/50 border border-border hover:border-primary/50 transition-all duration-300 hover:bg-secondary"
                     >
                          <motion.div
                             animate={{ 
@@ -52,10 +55,10 @@ export default function Stack() {
                                 className="absolute inset-0 blur-2xl opacity-0 group-hover:opacity-40 transition-opacity duration-500"
                                 style={{ backgroundColor: tech.color }}
                              />
-                             <img src={tech.icon} alt={tech.name} className="w-12 h-12 relative z-10 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]" />
+                             <img src={tech.icon} alt={tech.name} className="w-12 h-12 relative z-10 drop-shadow-[0_0_15px_rgba(var(--foreground),0.1)]" />
                          </motion.div>
                          
-                         <span className="font-bold text-sm tracking-wide text-muted-foreground group-hover:text-white transition-colors">{tech.name}</span>
+                         <span className="font-bold text-sm tracking-wide text-muted-foreground group-hover:text-foreground transition-colors">{tech.name}</span>
                     </motion.div>
                  ))}
             </div>

@@ -8,51 +8,51 @@
 @custom-variant dark (&:where(.dark *) );
 
 :root {
-  /* Senior Dev / Tech Purple Palette */
-  /* Base Reference: rgb(67, 16, 154) -> #43109a */
+  /* Radiance - Light Atmosphere */
+  --primary: #7c3aed;
+  --primary-deep: #ede9fe;
+  --dark-mode: #0f172a;
+
+
+  --radius: 0.75rem;
+  --background: #ffffff;
+  --foreground: #0f172a;
   
-  --primary: #8b5cf6; /* Lighter Violet for text/highlights so they are visible on dark */
-  --primary-deep: #43109a; /* The user's specific deep purple for backgrounds/accents */
-  
-  --radius: 0.25rem;
-  --background: #030014; /* Very dark purple/black */
-  --foreground: #e2e8f0; /* Slate 200 */
-  
-  --card: #0f0720;
-  --card-foreground: #e2e8f0;
-  --popover: #0f0720;
-  --popover-foreground: #e2e8f0;
+  --card: #f8fafc;
+  --card-foreground: #0f172a;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
   --primary-foreground: #ffffff;
   
-  --secondary: #1e1b4b; /* Indigo 950 */
-  --secondary-foreground: #e2e8f0;
+  --secondary: #f1f5f9;
+  --secondary-foreground: #1e293b;
   
-  --muted: #1e1b4b;
-  --muted-foreground: #94a3b8;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
   
-  --accent: #43109a;
-  --accent-foreground: #ffffff;
+  --accent: #f1f5f9;
+  --accent-foreground: #0f172a;
   
-  --destructive: #7f1d1d;
-  --border: #2e1065; /* Deep purple border */
-  --input: #2e1065;
+  --destructive: #ef4444;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
   --ring: #7c3aed;
   
-  --sidebar: #020617;
-  --sidebar-foreground: #f8fafc;
-  --sidebar-primary: #8b5cf6;
+  --sidebar: #f8fafc;
+  --sidebar-foreground: #0f172a;
+  --sidebar-primary: #7c3aed;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #1e293b;
-  --sidebar-accent-foreground: #f8fafc;
-  --sidebar-border: #1e293b;
-  --sidebar-ring: #8b5cf6;
+  --sidebar-accent: #f1f5f9;
+  --sidebar-accent-foreground: #0f172a;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #7c3aed;
 
   /* Fonts */
   --font-heading: "Space Grotesk", sans-serif;
   --font-body: "Inter", sans-serif;
   
   /* Cinematic Effects */
-  --film-grain-opacity: 0.05;
+  --film-grain-opacity: 0.02;
 }
 
 @theme inline {
@@ -67,6 +67,7 @@
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
+  --color-primary-deep: var(--primary-deep);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
@@ -91,6 +92,7 @@
 }
 
 .dark {
+  /* Obsidian - Cinematic Dark Atmosphere */
   --background: #030014;
   --foreground: #e2e8f0;
   --card: #0f0720;
@@ -98,6 +100,7 @@
   --popover: #0f0720;
   --popover-foreground: #e2e8f0;
   --primary: #8b5cf6;
+  --primary-deep: #43109a;
   --primary-foreground: #ffffff;
   --secondary: #1e1b4b;
   --secondary-foreground: #e2e8f0;
@@ -109,6 +112,7 @@
   --border: #2e1065;
   --input: #2e1065;
   --ring: #7c3aed;
+  --film-grain-opacity: 0.05;
 }
 
 @layer base {

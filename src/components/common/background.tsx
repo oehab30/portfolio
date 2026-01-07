@@ -24,20 +24,22 @@ const Background: React.FC<BackgroundProps> = ({ children }) => {
       
       {/* 0. Cinematic Grain Overlay */}
       <div 
-        className="fixed inset-0 z-50 pointer-events-none opacity-[0.07] mix-blend-overlay"
+        className="fixed inset-0 z-50 pointer-events-none mix-blend-overlay"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          opacity: 'var(--film-grain-opacity)'
         }}
       />
       
-      {/* 0.5 Spotlight Effect - Static */}
-      <div className="fixed top-0 left-0 w-full h-full bg-linear-to-b from-black/20 via-transparent to-black/80 pointer-events-none z-40" />
+      {/* 0.5 Cinematic Vignette - Subtler and Theme Aware */}
+      <div className="fixed inset-0 pointer-events-none z-40 bg-linear-to-b from-background/10 via-transparent to-background/40 dark:from-black/10 dark:to-black/60" />
 
-      {/* 0.6 Active Mouse Spotlight */}
+      {/* 0.6 Active Mouse Spotlight - Theme Aware Color */}
       <div 
         className="fixed inset-0 z-30 pointer-events-none transition-opacity duration-300"
         style={{
-          background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(229, 211, 179, 0.06), transparent 40%)`
+          background: `radial-gradient(800px circle at ${mousePosition.x}px ${mousePosition.y}px, var(--primary-deep), transparent 40%)`,
+          opacity: 0.08
         }}
       />
 

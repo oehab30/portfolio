@@ -12,7 +12,7 @@ const SectionTitle = ({ title, subtitle, className = "" }: SectionTitleProps) =>
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <div className={`mb-12 ${className}`} ref={ref}>
+    <div className={` mb-12  ${className}`} ref={ref}>
       {subtitle && (
         <motion.span
           initial={{ opacity: 0, y: 20 }}

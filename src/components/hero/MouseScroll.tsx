@@ -10,7 +10,7 @@ function Mousescroll() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 group"
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 translate-y-[-57px] flex flex-col items-center gap-3 group"
       >
         <div className=" mb-4 relative w-6 h-10 border-2 border-white/30 rounded-full p-1 flex justify-center backdrop-blur-sm group-hover:border-primary/60 transition-colors duration-300 shadow-[0_0_15px_rgba(0,0,0,0.2)]">
        

@@ -26,9 +26,9 @@ function About() {
   };
 
   return (
-    <section className="py-32 px-6 relative z-10 border-t border-white/5 bg-background overflow-hidden" id="about">
+    <section className="py-32 px-6 relative z-10 border-t border-foreground/5 overflow-hidden" id="about">
       {/* Background Section Index */}
-      <div className="absolute top-0 right-10 text-[25vw] font-bold text-white/2 leading-none pointer-events-none select-none">
+      <div className="absolute top-0 right-10 text-[25vw] font-bold text-foreground/5 leading-none pointer-events-none select-none">
         02
       </div>
 
@@ -44,12 +44,12 @@ function About() {
                 className="max-w-2xl"
             >
                 <div className="flex items-center gap-4 mb-6">
-                    <Animated_line text="The Developer" lines={1} textColor={"text-primary"} lineColor={"bg-primary/40"}/>
+                    <Animated_line text="About" lines={1} textColor={"text-primary"} lineColor={"bg-primary/40"}/>
                 </div>
 
                 <h2 className="text-6xl md:text-9xl font-heading font-bold leading-[0.85] tracking-tighter">
                     Creative <br />
-                    <span className="text-transparent bg-clip-text bg-linear-to-r from-primary via-purple-400 to-white/90">Identity</span>
+                    <span className="text-transparent bg-clip-text bg-linear-to-r from-primary via-purple-400 to-foreground/90">Identity</span>
                 </h2>
             </motion.div>
 
@@ -60,7 +60,7 @@ function About() {
                 transition={{ delay: 0.5 }}
                 className="hidden lg:block text-right"
             >
-                <p className="text-[10px] font-mono uppercase tracking-[0.5em] text-white/20 mb-2">Current Focus</p>
+                <p className="text-[10px] font-mono uppercase tracking-[0.5em] text-foreground/20 mb-2">Current Focus</p>
                 <p className="text-sm font-mono text-primary/80 tracking-widest uppercase">Frontend Architecture</p>
             </motion.div>
         </div>
@@ -76,7 +76,7 @@ function About() {
                     viewport={{ once: true }}
                     className="space-y-8"
                 >
-                    <p className="text-2xl md:text-3xl font-light leading-snug text-white/90">
+                    <p className="text-2xl md:text-3xl font-light leading-snug text-foreground/90">
                         I am a developer who believes <span className="text-primary italic">complexity</span> should be beautiful and <span className="text-primary italic">simplicity</span> should be felt.
                     </p>
                     
@@ -92,18 +92,18 @@ function About() {
                     <div className="pt-4 flex items-center gap-8">
                         <div>
                              <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-primary mb-1">Status</p>
-                             <p className="text-xs uppercase tracking-widest text-white/80">Available for hire</p>
+                             <p className="text-xs uppercase tracking-widest text-foreground/80">Available for hire</p>
                         </div>
-                        <div className="w-px h-10 bg-white/10" />
+                        <div className="w-px h-10 bg-foreground/10" />
                         <div>
                              <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-primary mb-1">Vibe</p>
-                             <p className="text-xs uppercase tracking-widest text-white/80">Boutique & Precise</p>
+                             <p className="text-xs uppercase tracking-widest text-foreground/80">Boutique & Precise</p>
                         </div>
                     </div>
                 </motion.div>
 
                 {/* Decorative Stats Grid */}
-                <div className="grid grid-cols-2 gap-px bg-white/5 border border-white/5">
+                <div className="grid grid-cols-2 gap-px bg-foreground/5 border border-foreground/5">
                     {[
                         { label: 'Precision', value: '99%' },
                         { label: 'Passion', value: '100%' },
@@ -111,8 +111,8 @@ function About() {
                         { label: 'Stack', value: 'Modern' }
                     ].map((stat, i) => (
                         <div key={i} className="bg-background p-6 space-y-1">
-                            <p className="text-[8px] font-mono uppercase tracking-[0.4em] text-white/20">{stat.label}</p>
-                            <p className="text-xl font-heading font-medium text-white/60 group-hover:text-primary transition-colors">{stat.value}</p>
+                            <p className="text-[8px] font-mono uppercase tracking-[0.4em] text-foreground/20">{stat.label}</p>
+                            <p className="text-xl font-heading font-medium text-foreground/60 group-hover:text-primary transition-colors">{stat.value}</p>
                         </div>
                     ))}
                 </div>
@@ -128,14 +128,14 @@ function About() {
             >
                 {/* Section Subtitle */}
                 <div className="flex items-center gap-4 mb-4">
-                    <span className="text-[10px] font-mono uppercase tracking-[1em] text-white/20">Background</span>
-                    <motion.div variants={lineVariants} className="h-px flex-1 bg-white/5 origin-left" />
+                    <span className="text-[10px] font-mono uppercase tracking-[1em] text-foreground/20">Background</span>
+                    <motion.div variants={lineVariants} className="h-px flex-1 bg-foreground/5 origin-left" />
                 </div>
                 
                 {/* Experience Card */}
                 <motion.div 
                     variants={itemVariants}
-                    className="group relative p-10 bg-white/5 border border-white/5 rounded-3xl hover:bg-white/10 hover:border-primary/20 transition-all duration-700 overflow-hidden"
+                    className="group relative p-10 bg-secondary/50 border border-border rounded-3xl hover:bg-secondary hover:border-primary/20 transition-all duration-700 overflow-hidden"
                 >
                     <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
                         <FaSuitcase size={120} />
@@ -159,19 +159,19 @@ function About() {
                 {/* Education Card */}
                 <motion.div 
                     variants={itemVariants}
-                    className="group relative p-10 bg-white/5 border border-white/5 rounded-3xl hover:bg-white/10 hover:border-primary/20 transition-all duration-700 overflow-hidden"
+                    className="group relative p-10 bg-secondary/50 border border-border rounded-3xl hover:bg-secondary hover:border-primary/20 transition-all duration-700 overflow-hidden"
                 >
                     <div className="relative z-10 flex flex-col md:flex-row gap-8">
-                         <div className="w-16 h-16 rounded-2xl bg-primary/5 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-black transition-all duration-500">
+                         <div className="w-16 h-16 rounded-2xl bg-primary/5 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500">
                             <RiGraduationCapFill size={28} />
                          </div>
                          <div className="flex-1 space-y-4">
                             <div className="flex justify-between items-start">
-                                <h3 className="text-2xl font-bold font-heading tracking-tight">Thebes Academy</h3>
-                                <span className="text-[9px] font-mono px-3 py-1 rounded-full border border-white/10 text-white/40">MIS DEGREE</span>
+                                <h3 className="text-2xl font-bold font-heading tracking-tight">Canadian International College</h3>
+                                <span className="text-[9px] font-mono px-3 py-1 rounded-full border border-border text-foreground/40">BIS DEGREE</span>
                             </div>
                             <p className="text-muted-foreground/80 leading-relaxed font-light">
-                                Bachelor's in Management Information Systems. Providing a unique bridge between complex business logic and creative technology solutions.
+                                Bachelor's in Business Information Systems. Providing a unique bridge between complex business logic and creative technology solutions.
                             </p>
                          </div>
                     </div>
@@ -180,23 +180,23 @@ function About() {
                 {/* Training Card */}
                 <motion.div 
                     variants={itemVariants}
-                    className="group relative p-10 bg-white/5 border border-white/5 rounded-3xl hover:bg-white/10 hover:border-primary/20 transition-all duration-700 overflow-hidden"
+                    className="group relative p-10 bg-secondary/50 border border-border rounded-3xl hover:bg-secondary hover:border-primary/20 transition-all duration-700 overflow-hidden"
                 >
                     <div className="relative z-10 flex flex-col md:flex-row gap-8">
-                         <div className="w-16 h-16 rounded-2xl bg-primary/5 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-black transition-all duration-500">
+                         <div className="w-16 h-16 rounded-2xl bg-primary/5 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500">
                             <PiMedalFill size={26} />
                          </div>
                          <div className="flex-1 space-y-4">
                             <div className="flex justify-between items-start">
                                 <h3 className="text-2xl font-bold font-heading tracking-tight">Specializations</h3>
-                                <span className="text-[9px] font-mono px-3 py-1 rounded-full border border-white/10 text-white/40">CERTIFIED</span>
+                                <span className="text-[9px] font-mono px-3 py-1 rounded-full border border-border text-foreground/40">CERTIFIED</span>
                             </div>
                             <p className="text-muted-foreground/80 leading-relaxed font-light mb-6">
-                                Focused training at Route Academy and Upskilling Program. Mastery of the modern JavaScript ecosystem and advanced React patterns.
+                                Focused training at coach Academy and Upskilling Program. Mastery of the modern JavaScript ecosystem and advanced React patterns.
                             </p>
                             <div className="flex flex-wrap gap-2">
                                 {['React', 'Next.js', 'Redux', 'System Design'].map(tag => (
-                                    <span key={tag} className="text-[10px] font-mono py-1 px-4 rounded-lg bg-white/5 border border-white/5 text-white/30 group-hover:text-primary transition-colors">{tag}</span>
+                                    <span key={tag} className="text-[10px] font-mono py-1 px-4 rounded-lg bg-secondary border border-border text-foreground/30 group-hover:text-primary transition-colors">{tag}</span>
                                 ))}
                             </div>
                          </div>

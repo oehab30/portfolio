@@ -4,6 +4,8 @@ import * as THREE from "three";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail, Github, Linkedin, Twitter, Send, MapPin, Phone, ExternalLink } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
+import TextType from '../ui/TextType';
+import Animated_line from "../ui/Animated_line";
 
 function InteractiveParticles() {
   const points = useRef<THREE.Points>(null!);
@@ -105,21 +107,25 @@ const Contact = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-start">
                         
                         {/* Left Side: Info & Details */}
-                        <div className="space-y-12">
+                              <div className="space-y-12">
                             <motion.div
                                 initial={{ opacity: 0, x: -50 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8 }}
                             >
-                                <span className="text-primary font-mono tracking-[0.3em] uppercase text-sm block mb-4">Contact</span>
-                                <h2 className="text-6xl md:text-8xl font-bold tracking-tighter leading-[0.9] mb-8">
-                                    Let’s start <br /> 
-                                    <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-purple-500/80 italic">something.</span>
-                                </h2>
-                                <p className="text-muted-foreground text-xl max-w-lg font-light leading-relaxed">
-                                    Whether you have a question or just want to say hi, my inbox is always open.
-                                </p>
+     <div className="flex items-center gap-4 mb-6">
+                    <Animated_line text="Contact" lines={1} textColor={"text-primary"} lineColor={"bg-primary/40"}/>
+                </div>
+                
+<TextType 
+  text={["Whether you have a question", "or just want to say hi", "my inbox is always open."]}
+  typingSpeed={75}
+  pauseDuration={1500}
+  showCursor={true}
+  cursorCharacter="|"
+  className="text-4xl md:text-8xl lg:text-5xl font-bold tracking-tighter leading-[0.9] mt-3"
+/>
                             </motion.div>
 
                             <div className="space-y-6">
@@ -185,7 +191,7 @@ const Contact = () => {
                                                 value={formState.name}
                                                 onChange={(e) => setFormState({...formState, name: e.target.value})}
                                                 className="w-full bg-white/5 border border-white/5 rounded-2xl p-4 focus:outline-none focus:border-primary/40 transition-colors"
-                                                placeholder="John Doe"
+                                                placeholder="Your Name"
                                             />
                                         </div>
                                         <div className="space-y-2">
@@ -196,7 +202,7 @@ const Contact = () => {
                                                 value={formState.email}
                                                 onChange={(e) => setFormState({...formState, email: e.target.value})}
                                                 className="w-full bg-white/5 border border-white/5 rounded-2xl p-4 focus:outline-none focus:border-primary/40 transition-colors"
-                                                placeholder="john@example.com"
+                                                placeholder="Email@example.com"
                                             />
                                         </div>
                                     </div>
@@ -267,4 +273,3 @@ const Contact = () => {
 };
 
 export default Contact;
-

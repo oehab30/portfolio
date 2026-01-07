@@ -72,7 +72,10 @@ const Projects = () => {
     }, [mouseX, mouseY, isMobile]);
 
     return (
-        <section className="py-24 px-6 relative z-10 border-t border-white/5 bg-background" id="projects">
+        <section className="py-24 px-6 relative z-10 border-t border-foreground/5" id="projects">
+              <div className="absolute top-0 right-10 text-[25vw] font-bold text-foreground/5 leading-none pointer-events-none select-none">
+        04
+      </div>
             <div className="max-w-6xl mx-auto">
                 {/* Header */}
                 <div className="flex items-center gap-2 mb-10 md:mb-16">
@@ -88,7 +91,7 @@ const Projects = () => {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="group relative border-b border-white/10 py-8 md:py-12 lg:cursor-none"
+                            className="group relative border-b border-border py-8 md:py-12 lg:cursor-none"
                             onMouseEnter={() => !isMobile && setActiveIndex(index)}
                             onMouseLeave={() => !isMobile && setActiveIndex(null)}
                         >
@@ -100,7 +103,7 @@ const Projects = () => {
                                 <div className="flex-1">
                                     <h3 className={cn(
                                         "text-3xl md:text-5xl lg:text-7xl font-medium tracking-tighter transition-all duration-500",
-                                        activeIndex === index ? "text-primary lg:translate-x-4" : "text-white/40 group-hover:text-white"
+                                        activeIndex === index ? "text-primary lg:translate-x-4" : "text-foreground/40 group-hover:text-foreground"
                                     )}>
                                         {project.title}
                                     </h3>
@@ -110,8 +113,8 @@ const Projects = () => {
                                 </div>
 
                                 <div className={cn(
-                                    "hidden md:flex p-4 rounded-full border border-white/5 transition-all duration-500 opacity-0 group-hover:opacity-100",
-                                    activeIndex === index ? "bg-primary text-black scale-110" : "scale-75"
+                                    "hidden md:flex p-4 rounded-full border border-border transition-all duration-500 opacity-0 group-hover:opacity-100",
+                                    activeIndex === index ? "bg-primary text-primary-foreground scale-110" : "scale-75"
                                 )}>
                                     <ArrowUpRight size={24} />
                                 </div>
@@ -119,13 +122,13 @@ const Projects = () => {
 
                             {/* Mobile Image Preview (Compact) */}
                             {isMobile && (
-                                <div className="mt-8 w-full aspect-video rounded-2xl overflow-hidden border border-white/5 relative">
+                                <div className="mt-8 w-full aspect-video rounded-2xl overflow-hidden border border-border relative">
                                     <img 
                                         src={project.image} 
                                         alt={project.title} 
-                                        className="w-full h-full object-cover opacity-60"
+                                        className="w-full h-full object-cover opacity-60 dark:opacity-80"
                                     />
-                                    <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent opacity-60" />
+                                    <div className="absolute inset-0 bg-linear-to-t from-background via-transparent to-transparent opacity-60" />
                                 </div>
                             )}
                         </motion.div>
@@ -147,7 +150,7 @@ const Projects = () => {
                                 x: 50,
                                 y: -180,
                             }}
-                            className="fixed pointer-events-none z-50 w-[400px] aspect-4/5 overflow-hidden rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.5)] border border-white/10"
+                            className="fixed pointer-events-none z-50 w-[400px] aspect-4/5 overflow-hidden rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.5)] border border-border"
                         >
                             <motion.img
                                 key={projects[activeIndex].image}
@@ -161,7 +164,7 @@ const Projects = () => {
                             <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent" />
                             <div className="absolute bottom-10 left-10 right-10">
                                 <span className="text-[10px] font-mono uppercase tracking-[0.5em] text-primary mb-2 block">Case Study</span>
-                                <p className="text-xl font-bold text-white tracking-tight">{projects[activeIndex].title}</p>
+                                <p className="text-xl font-bold text-foreground tracking-tight">{projects[activeIndex].title}</p>
                             </div>
                         </motion.div>
                     )}
