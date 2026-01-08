@@ -2,7 +2,7 @@ import Hero from "../components/hero/Hero";
 import Stack from "../components/stack/Stack";
 import Projects from "../components/projects/Projects";
 import About from "@/components/about/About";
-import Contact from "@/components/contact/Contact";
+import ContactSection from "@/components/contact/contactsection";
 
 function Home() {
   return (
@@ -20,7 +20,7 @@ function Home() {
         <Projects />
       </section>
       
-      <Contact />
+      <ContactSection />
       
     </>
   );

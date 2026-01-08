@@ -5,7 +5,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { IoDocumentTextOutline } from "react-icons/io5";
 import Magnetic from "@/components/layout/Magnetic Wrapper";
 import TrueFocus from "../ui/TrueFocus";
-import MouseScroll from "./mousescroll";
+import MouseScroll from "./MouseScroll";
 import HeroDescription from "./HeroDescription";
 import HeroGetInTouch from "./HeroGetInTouch";
 import HeroViewWork from "./HeroViewWork";
