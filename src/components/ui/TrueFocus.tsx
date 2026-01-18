@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import { motion } from 'motion/react';
+import { useEffect, useRef, useState, useMemo, useCallback } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 
 interface TrueFocusProps {
   sentence?: string;
@@ -19,6 +19,25 @@ interface FocusRect {
   height: number;
 }
 
+const FocusCorner = ({ side }: { side: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' }) => {
+  const positions = {
+    'top-left': 'top-[-4px] left-[-4px] border-r-0 border-b-0',
+    'top-right': 'top-[-4px] right-[-4px] border-l-0 border-b-0',
+    'bottom-left': 'bottom-[-4px] left-[-4px] border-r-0 border-t-0',
+    'bottom-right': 'bottom-[-4px] right-[-4px] border-l-0 border-t-0',
+  };
+
+  return (
+    <span
+      className={`absolute w-3 h-3 border-2 rounded-[1px] ${positions[side]}`}
+      style={{
+        borderColor: 'var(--border-color)',
+        filter: 'drop-shadow(0 0 4px var(--border-color))'
+      }}
+    />
+  );
+};
+
 const TrueFocus: React.FC<TrueFocusProps> = ({
   sentence = 'Omar Ehab',
   separator = ' ',
@@ -29,32 +48,32 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
   animationDuration = 0.5,
   pauseBetweenAnimations = 2
 }) => {
-  const words = sentence.split(separator);
+  const words = useMemo(() => sentence.split(separator), [sentence, separator]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [lastActiveIndex, setLastActiveIndex] = useState<number | null>(null);
+  const [lastActiveIndex, setLastActiveIndex] = useState<number>(0);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const wordRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const [focusRect, setFocusRect] = useState<FocusRect>({ x: 0, y: 0, width: 0, height: 0 });
 
+  // Handle automatic index cycling
   useEffect(() => {
-    if (!manualMode) {
-      const interval = setInterval(
-        () => {
-          setCurrentIndex(prev => (prev + 1) % words.length);
-        },
-        (animationDuration + pauseBetweenAnimations) * 1000
-      );
+    if (manualMode) return;
 
-      return () => clearInterval(interval);
-    }
+    const interval = setInterval(() => {
+      setCurrentIndex(prev => (prev + 1) % words.length);
+    }, (animationDuration + pauseBetweenAnimations) * 1000);
+
+    return () => clearInterval(interval);
   }, [manualMode, animationDuration, pauseBetweenAnimations, words.length]);
 
+  // Update focus rectangle position
   useEffect(() => {
-    if (currentIndex === null || currentIndex === -1) return;
-    if (!wordRefs.current[currentIndex] || !containerRef.current) return;
+    const activeElement = wordRefs.current[currentIndex];
+    const containerElement = containerRef.current;
+    if (!activeElement || !containerElement) return;
 
-    const parentRect = containerRef.current.getBoundingClientRect();
-    const activeRect = wordRefs.current[currentIndex]!.getBoundingClientRect();
+    const parentRect = containerElement.getBoundingClientRect();
+    const activeRect = activeElement.getBoundingClientRect();
 
     setFocusRect({
       x: activeRect.left - parentRect.left,
@@ -64,18 +83,18 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
     });
   }, [currentIndex, words.length]);
 
-  const handleMouseEnter = (index: number) => {
+  const handleInteractionStart = useCallback((index: number) => {
     if (manualMode) {
       setLastActiveIndex(index);
       setCurrentIndex(index);
     }
-  };
+  }, [manualMode]);
 
-  const handleMouseLeave = () => {
+  const handleInteractionEnd = useCallback(() => {
     if (manualMode) {
-      setCurrentIndex(lastActiveIndex!);
+      setCurrentIndex(lastActiveIndex);
     }
-  };
+  }, [manualMode, lastActiveIndex]);
 
   return (
     <div
@@ -85,85 +104,63 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
     >
       {words.map((word, index) => {
         const isActive = index === currentIndex;
+        
         return (
-          <span
-            key={index}
-            ref={el => {
-              wordRefs.current[index] = el;
+          <button
+            key={`${word}-${index}`}
+            ref={el => { wordRefs.current[index] = el; }}
+            type="button"
+            className="relative bg-transparent border-none p-0 text-5xl sm:text-7xl md:text-7xl lg:text-8xl font-black  transition-all duration-300"
+            style={{
+              filter: `blur(${isActive ? 0 : blurAmount}px)`,
+              transition: `filter ${animationDuration}s ease`,
+              outline: 'none',
+              userSelect: 'none'
             }}
-            className="relative  text-5xl md:text-7xl lg:text-9xl font-black cursor-pointer"
-            style={
-              {
-                filter: manualMode
-                  ? isActive
-                    ? `blur(0px)`
-                    : `blur(${blurAmount}px)`
-                  : isActive
-                    ? `blur(0px)`
-                    : `blur(${blurAmount}px)`,
-                transition: `filter ${animationDuration}s ease`,
-                outline: 'none',
-                userSelect: 'none'
-              } as React.CSSProperties
-            }
-            onMouseEnter={() => handleMouseEnter(index)}
-            onMouseLeave={handleMouseLeave}
+            onMouseEnter={() => handleInteractionStart(index)}
+            onMouseLeave={handleInteractionEnd}
+            onFocus={() => handleInteractionStart(index)}
+            onBlur={handleInteractionEnd}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleInteractionStart(index);
+              }
+            }}
           >
             {word}
-          </span>
+          </button>
         );
       })}
 
-      <motion.div
-        className="absolute top-0 left-0 pointer-events-none box-border border-0"
-        animate={{
-          x: focusRect.x,
-          y: focusRect.y,
-          width: focusRect.width,
-          height: focusRect.height,
-          opacity: currentIndex >= 0 ? 1 : 0
-        }}
-        transition={{
-          duration: animationDuration
-        }}
-        style={
-          {
+      <AnimatePresence>
+        <motion.div
+          className="absolute top-0 left-0 pointer-events-none box-border border-0"
+          animate={{
+            x: focusRect.x,
+            y: focusRect.y,
+            width: focusRect.width,
+            height: focusRect.height,
+            opacity: currentIndex >= 0 ? 1 : 0
+          }}
+          transition={{
+            duration: animationDuration,
+            ease: "easeInOut"
+          }}
+          style={{
             '--border-color': borderColor,
             '--glow-color': glowColor
-          } as React.CSSProperties
-        }
-      >
-        <span
-          className="absolute w-3 h-3 border-2 rounded-[1px] top-[-4px] left-[-4px] border-r-0 border-b-0"
-          style={{
-            borderColor: 'var(--border-color)',
-            filter: 'drop-shadow(0 0 4px var(--border-color))'
-          }}
-        ></span>
-        <span
-          className="absolute w-3 h-3 border-2 rounded-[1px] top-[-4px] right-[-4px] border-l-0 border-b-0"
-          style={{
-            borderColor: 'var(--border-color)',
-            filter: 'drop-shadow(0 0 4px var(--border-color))'
-          }}
-        ></span>
-        <span
-          className="absolute w-3 h-3 border-2 rounded-[1px] bottom-[-4px] left-[-4px] border-r-0 border-t-0"
-          style={{
-            borderColor: 'var(--border-color)',
-            filter: 'drop-shadow(0 0 4px var(--border-color))'
-          }}
-        ></span>
-        <span
-          className="absolute w-3 h-3 border-2 rounded-[1px] bottom-[-4px] right-[-4px] border-l-0 border-t-0"
-          style={{
-            borderColor: 'var(--border-color)',
-            filter: 'drop-shadow(0 0 4px var(--border-color))'
-          }}
-        ></span>
-      </motion.div>
+          } as React.CSSProperties}
+        >
+          <FocusCorner side="top-left" />
+          <FocusCorner side="top-right" />
+          <FocusCorner side="bottom-left" />
+          <FocusCorner side="bottom-right" />
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 };
 
 export default TrueFocus;
+

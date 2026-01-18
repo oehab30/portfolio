@@ -22,7 +22,7 @@ export default function Stack() {
   return (
     <section className="mb-24 mt-24 py-24 relative overflow-hidden" id="stack">
       {/* Background Decoration */}
-      <div className="absolute top-0 right-10 text-[25vw] font-bold text-foreground/5 leading-none pointer-events-none select-none">
+      <div className="absolute top-0 right-10 text-[20vw] md:text-[25vw] font-bold text-foreground/5 leading-none pointer-events-none select-none">
         03
       </div>
 

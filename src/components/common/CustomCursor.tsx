@@ -6,50 +6,61 @@ const CustomCursor = () => {
     const [clicked, setClicked] = useState(false);
     const [linkHovered, setLinkHovered] = useState(false);
 
+    const [isTouchDevice, setIsTouchDevice] = useState(false);
+
     useEffect(() => {
-        const addEventListeners = () => {
-            document.addEventListener("mousemove", onMouseMove);
-            document.addEventListener("mouseenter", onMouseEnter);
-            document.addEventListener("mouseleave", onMouseLeave);
-            document.addEventListener("mousedown", onMouseDown);
-            document.addEventListener("mouseup", onMouseUp);
+        const checkTouch = () => {
+            setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
         };
+        checkTouch();
 
-        const removeEventListeners = () => {
-            document.removeEventListener("mousemove", onMouseMove);
-            document.removeEventListener("mouseenter", onMouseEnter);
-            document.removeEventListener("mouseleave", onMouseLeave);
-            document.removeEventListener("mousedown", onMouseDown);
-            document.removeEventListener("mouseup", onMouseUp);
-        };
+        if (!isTouchDevice) {
+            const addEventListeners = () => {
+                document.addEventListener("mousemove", onMouseMove);
+                document.addEventListener("mouseenter", onMouseEnter);
+                document.addEventListener("mouseleave", onMouseLeave);
+                document.addEventListener("mousedown", onMouseDown);
+                document.addEventListener("mouseup", onMouseUp);
+            };
 
-        const onMouseMove = (e: MouseEvent) => {
-            setPosition({ x: e.clientX, y: e.clientY });
-            
-            const target = e.target as HTMLElement;
-            const isLink = target.closest('a') || target.closest('button') || target.closest('input');
-            setLinkHovered(!!isLink);
-        };
+            const removeEventListeners = () => {
+                document.removeEventListener("mousemove", onMouseMove);
+                document.removeEventListener("mouseenter", onMouseEnter);
+                document.removeEventListener("mouseleave", onMouseLeave);
+                document.removeEventListener("mousedown", onMouseDown);
+                document.removeEventListener("mouseup", onMouseUp);
+            };
 
-        const onMouseEnter = () => {
-            setHidden(false);
-        };
+            const onMouseMove = (e: MouseEvent) => {
+                setPosition({ x: e.clientX, y: e.clientY });
+                
+                const target = e.target as HTMLElement;
+                const isLink = target.closest('a') || target.closest('button') || target.closest('input') || target.closest('textarea');
+                setLinkHovered(!!isLink);
+            };
 
-        const onMouseLeave = () => {
-            setHidden(true);
-        };
+            const onMouseEnter = () => {
+                setHidden(false);
+            };
 
-        const onMouseDown = () => {
-            setClicked(true);
-        };
+            const onMouseLeave = () => {
+                setHidden(true);
+            };
 
-        const onMouseUp = () => {
-            setClicked(false);
-        };
+            const onMouseDown = () => {
+                setClicked(true);
+            };
 
-        addEventListeners();
-        return () => removeEventListeners();
-    }, []);
+            const onMouseUp = () => {
+                setClicked(false);
+            };
+
+            addEventListeners();
+            return () => removeEventListeners();
+        }
+    }, [isTouchDevice]);
+
+    if (isTouchDevice) return null;
 
     const cursorStyle = {
         left: `${position.x}px`,

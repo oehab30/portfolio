@@ -6,34 +6,39 @@ import { FaWhatsapp } from "react-icons/fa";
 const ContactInfoCard = ({ icon: Icon, label, value, link, color, index }: any) => (
   <motion.a
     href={link} target="_blank" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.1 }}
-    className="group flex items-center gap-6 p-6 rounded-2xl bg-secondary/30 dark:bg-foreground/5 border border-border hover:border-primary/50 transition-all duration-300"
+    className="group flex items-center gap-4 sm:gap-6 p-4 sm:p-6 rounded-2xl bg-secondary/30 dark:bg-foreground/5 border border-border hover:border-primary/50 transition-all duration-300"
   >
-    <div className={`w-12 h-12 rounded-xl bg-background border border-border flex items-center justify-center text-muted-foreground ${color}`}>
-      <Icon size={22} />
+    <div className={`shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-background border border-border flex items-center justify-center text-muted-foreground ${color}`}>
+      <Icon className="size-5 sm:size-6" />
     </div>
-    <div>
-      <p className="text-xs font-mono uppercase text-muted-foreground/60">{label}</p>
-      <p className="text-lg font-medium">{value}</p>
+    <div className="min-w-0 flex-1">
+      <p className="text-[10px] font-mono uppercase text-muted-foreground/60">{label}</p>
+      <p className="text-sm sm:text-base md:text-lg font-medium truncate">{value}</p>
     </div>
-    <ExternalLink size={14} className="ml-auto opacity-0 group-hover:opacity-40" />
+    <ExternalLink size={14} className="ml-auto opacity-0 group-hover:opacity-40 shrink-0" />
   </motion.a>
 );
 
 // Component: ContactDetails info
 export const ContactDetails = () => {
   const details = [
-    { icon: Mail, label: "Email", value: "oehab785@gmail.com",        link: "mailto:oehab785@gmail.com",color: "group-hover:text-blue-500" },
-    { icon: FaWhatsapp, label: "WhatsApp", value: "+20 111 009 8802", link: "https://wa.me/1110098802" ,color: "group-hover:text-green-500" },
-    { icon: MapPin, label: "Location", value: "Cairo, Egypt",         link: "#"                        ,color: "group-hover:text-red-500" }
+    { icon: Mail, label: "Email", id: "email", value: "oehab785@gmail.com",        link: "mailto:oehab785@gmail.com",color: "group-hover:text-blue-500" },
+    { icon: FaWhatsapp, label: "WhatsApp", id: "whatsapp", value: "+20 111 009 8802", link: "https://wa.me/1110098802" ,color: "group-hover:text-green-500" },
+    { icon: MapPin, label: "Location", id: "location", value: "Cairo, Egypt",         link: "#"                        ,color: "group-hover:text-red-500" }
+  ];
+
+  const socialLinks = [
+    { icon: Github, href: "https://github.com", id: "github" },
+    { icon: Linkedin, href: "https://linkedin.com", id: "linkedin" }
   ];
 
   return (
-    <div className="space-y-6">
-      {details.map((item, i) => <ContactInfoCard key={i} {...item} index={i} />)}
+    <div className="space-y-4 sm:space-y-6">
+      {details.map((item, i) => <ContactInfoCard key={item.id} {...item} index={i} />)}
       <div className="flex gap-4 pt-4">
-        {[Github, Linkedin ].map((Icon, i) => (
-          <motion.a key={i} href="#" whileHover={{ y: -5 }} className=" ml-21 lg:ml-2 w-12 h-12 rounded-xl bg-secondary/50 dark:bg-foreground/5 border border-border flex items-center justify-center text-muted-foreground hover:text-primary transition-all">
-            <Icon size={20} />
+        {socialLinks.map((social) => (
+          <motion.a key={social.id} href={social.href} whileHover={{ y: -5 }} className="w-12 h-12 rounded-xl bg-secondary/50 dark:bg-foreground/5 border border-border flex items-center justify-center text-muted-foreground hover:text-primary transition-all">
+            <social.icon size={20} />
           </motion.a>
         ))}
       </div>

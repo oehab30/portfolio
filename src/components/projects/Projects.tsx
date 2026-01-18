@@ -1,8 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, useSpring, useMotionValue } from "framer-motion";
-import { ArrowUpRight, Star } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import Animated_line from "../ui/Animated_line";
+import AnimatedLine from "../ui/AnimatedLine";
 
 const projects = [
   {
@@ -73,13 +73,13 @@ const Projects = () => {
 
     return (
         <section className="py-24 px-6 relative z-10 border-t border-foreground/5" id="projects">
-              <div className="absolute top-0 right-10 text-[25vw] font-bold text-foreground/5 leading-none pointer-events-none select-none">
+              <div className="absolute top-0 right-10 text-[20vw] md:text-[25vw] font-bold text-foreground/5 leading-none pointer-events-none select-none">
         04
       </div>
             <div className="max-w-6xl mx-auto">
                 {/* Header */}
                 <div className="flex items-center gap-2 mb-10 md:mb-16">
-                    <Animated_line text="Selected Projects" lines={1} textColor={"text-primary"} lineColor={"bg-primary/60"}/>
+                    <AnimatedLine text="Selected Projects" lines={1} textColor={"text-primary"} lineColor={"bg-primary/60"}/>
                 </div>
 
                 {/* Projects List */}
@@ -102,12 +102,12 @@ const Projects = () => {
                                 
                                 <div className="flex-1">
                                     <h3 className={cn(
-                                        "text-3xl md:text-5xl lg:text-7xl font-medium tracking-tighter transition-all duration-500",
+                                        "text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-medium tracking-tighter transition-all duration-500",
                                         activeIndex === index ? "text-primary lg:translate-x-4" : "text-foreground/40 group-hover:text-foreground"
                                     )}>
                                         {project.title}
                                     </h3>
-                                    <p className="text-[10px] md:text-xs font-mono text-muted-foreground/30 mt-4 uppercase tracking-[0.3em] group-hover:text-primary/60 transition-colors">
+                                    <p className="text-[10px] md:text-xs font-mono text-muted-foreground/30 mt-2 md:mt-4 uppercase tracking-[0.3em] group-hover:text-primary/60 transition-colors">
                                         {project.category}
                                     </p>
                                 </div>

@@ -1,16 +1,13 @@
 import { motion } from "framer-motion";
-import { FaLocationDot } from "react-icons/fa6";
 import { IoMailSharp } from "react-icons/io5";
-import { FaArrowRightLong } from "react-icons/fa6";
-import { IoDocumentTextOutline } from "react-icons/io5";
-import Magnetic from "@/components/layout/Magnetic Wrapper";
+import { FaLocationDot } from "react-icons/fa6";
 import TrueFocus from "../ui/TrueFocus";
 import MouseScroll from "./MouseScroll";
 import HeroDescription from "./HeroDescription";
 import HeroGetInTouch from "./HeroGetInTouch";
 import HeroViewWork from "./HeroViewWork";
 import HeroDownloadCV from "./HeroDownloadCV";
-import Animated_line from "../ui/Animated_line";
+import AnimatedLine from "../ui/AnimatedLine";
 
 const Hero = () => {
   
@@ -24,7 +21,7 @@ const Hero = () => {
       {/* Main Content */}
       <div className="relative z-10 flex flex-col items-center max-w-5xl px-4 -translate-y-8 md:-translate-y-12 transition-transform duration-500">
 
-      <Animated_line text="Frontend Developer" />
+      <AnimatedLine text="Frontend Developer" />
 
  
         
@@ -49,15 +46,15 @@ const Hero = () => {
             custom={3}
             initial="hidden"
             animate="visible"
-            className="flex flex-row items-center gap-6 md:gap-12 text-[10px] md:text-sm font-body text-muted-foreground mb-8 md:mb-12"
+            className="flex sm:flex-row items-center gap-4 sm:gap-6 md:gap-12 text-[10px] md:text-sm font-body text-muted-foreground mb-8 md:mb-12"
         >
             <div className="flex items-center gap-2 transition-all hover:text-primary duration-300 hover:scale-105">
                 <FaLocationDot className="text-primary" /> 
-                <span className="tracking-wide">Cairo, Egypt</span>
+                <span className="tracking-wide text-[10px] sm:text-xs md:text-sm">Cairo, Egypt</span>
             </div>
             <a href="mailto:oehab785@gmail.com" className="flex items-center gap-2 transition-all hover:text-primary duration-300 hover:scale-105">
                  <IoMailSharp className="text-primary" />
-                 <span className="tracking-wide">oehab785@gmail.com</span>
+                 <span className="tracking-wide text-[10px] sm:text-xs md:text-sm">oehab785@gmail.com</span>
             </a>
         </motion.div>
 
@@ -66,7 +63,7 @@ const Hero = () => {
           custom={4}
           initial="hidden"
           animate="visible"
-          className="flex flex-row gap-6 items-center" >
+          className="flex  sm:gap-6 md:max-lg:gap-4  items-center" >
             
         {/* View Works */} <HeroViewWork/>
         {/* Get In Touch */} <HeroGetInTouch/>

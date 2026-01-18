@@ -10,9 +10,12 @@ function Mousescroll() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 translate-y-[-57px] flex flex-col items-center gap-3 group"
-      >
-        <div className="mb-4 relative w-6 h-10 border-2 border-foreground/20 dark:border-white/30 rounded-full p-1 flex justify-center backdrop-blur-sm group-hover:border-primary transition-colors duration-300 shadow-sm">
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 translate-y-[-57px] flex flex-col items-center gap-3 group
+        lg:bottom-2 xl:bottom-1 2xl:mb-12">
+        <div className="relative w-6 h-10 border-2 border-foreground/20
+         dark:border-white/30 rounded-full p-1 flex justify-center
+          backdrop-blur-sm group-hover:border-primary transition-colors duration-300 shadow-sm
+          mb-4  xl:mb-8 ">
           {/* Animated "Wheel" */}
           <motion.div
             animate={{
@@ -30,7 +33,7 @@ function Mousescroll() {
         </div>
         
         {/* Text changes color based on theme */}
-        <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+        <span className="text-[10px] mb-4    uppercase tracking-[0.3em] text-muted-foreground group-hover:text-foreground transition-colors duration-300">
           Scroll
         </span>
       </motion.a>

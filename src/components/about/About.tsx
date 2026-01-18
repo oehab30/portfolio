@@ -2,7 +2,7 @@ import { motion, Variants } from 'framer-motion';
 import { FaSuitcase } from "react-icons/fa";
 import { RiGraduationCapFill } from "react-icons/ri";
 import { PiMedalFill } from "react-icons/pi";
-import Animated_line from '../ui/Animated_line';
+import AnimatedLine from '../ui/AnimatedLine';
 
 function About() {
   const containerVariants: Variants = {
@@ -28,7 +28,7 @@ function About() {
   return (
     <section className="py-32 px-6 relative z-10 border-t border-foreground/5 overflow-hidden" id="about">
       {/* Background Section Index */}
-      <div className="absolute top-0 right-10 text-[25vw] font-bold text-foreground/5 leading-none pointer-events-none select-none">
+      <div className="absolute top-0 right-10 text-[20vw] md:text-[25vw] font-bold text-foreground/5 leading-none pointer-events-none select-none">
         02
       </div>
 
@@ -44,10 +44,10 @@ function About() {
                 className="max-w-2xl"
             >
                 <div className="flex items-center gap-4 mb-6">
-                    <Animated_line text="About" lines={1} textColor={"text-primary"} lineColor={"bg-primary/40"}/>
+                    <AnimatedLine text="About" lines={1} textColor={"text-primary"} lineColor={"bg-primary/40"}/>
                 </div>
 
-                <h2 className="text-6xl md:text-9xl font-heading font-bold leading-[0.85] tracking-tighter">
+                <h2 className="text-5xl md:text-7xl lg:text-9xl font-heading font-bold leading-[0.85] tracking-tighter">
                     Creative <br />
                     <span className="text-transparent bg-clip-text bg-linear-to-r from-primary via-purple-400 to-foreground/90">Identity</span>
                 </h2>
@@ -109,8 +109,8 @@ function About() {
                         { label: 'Passion', value: '100%' },
                         { label: 'Creative', value: 'Driven' },
                         { label: 'Stack', value: 'Modern' }
-                    ].map((stat, i) => (
-                        <div key={i} className="bg-background p-6 space-y-1">
+                    ].map((stat) => (
+                        <div key={stat.label} className="bg-background p-6 space-y-1">
                             <p className="text-[8px] font-mono uppercase tracking-[0.4em] text-foreground/20">{stat.label}</p>
                             <p className="text-xl font-heading font-medium text-foreground/60 group-hover:text-primary transition-colors">{stat.value}</p>
                         </div>
