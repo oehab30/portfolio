@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, useSpring, useMotionValue } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import AnimatedLine from "../ui/AnimatedLine";
+import AnimatedLine from "../common/AnimatedLine";
 
 const projects = [
   {
@@ -72,18 +72,18 @@ const Projects = () => {
     }, [mouseX, mouseY, isMobile]);
 
     return (
-        <section className="py-24 px-6 relative z-10 border-t border-foreground/5" id="projects">
+        <section className="relative z-10 px-6 py-24 border-t border-foreground/5" id="projects">
               <div className="absolute top-0 right-10 text-[20vw] md:text-[25vw] font-bold text-foreground/5 leading-none pointer-events-none select-none">
         04
       </div>
-            <div className="max-w-6xl mx-auto">
+            <div className="mx-auto max-w-6xl">
                 {/* Header */}
-                <div className="flex items-center gap-2 mb-10 md:mb-16">
+                <div className="flex gap-2 items-center mb-10 md:mb-16">
                     <AnimatedLine text="Selected Projects" lines={1} textColor={"text-primary"} lineColor={"bg-primary/60"}/>
                 </div>
 
                 {/* Projects List */}
-                <div className="flex flex-col relative">
+                <div className="flex relative flex-col">
                     {projects.map((project, index) => (
                         <motion.div
                             key={project.id}
@@ -91,11 +91,11 @@ const Projects = () => {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="group relative border-b border-border py-8 md:py-12 lg:cursor-none"
+                            className="relative py-8 border-b group border-border md:py-12 lg:cursor-none"
                             onMouseEnter={() => !isMobile && setActiveIndex(index)}
                             onMouseLeave={() => !isMobile && setActiveIndex(null)}
                         >
-                            <a href={project.link} className="flex flex-col md:flex-row md:items-end gap-4 md:gap-12 transition-all duration-500">
+                            <a href={project.link} className="flex flex-col gap-4 transition-all duration-500 md:flex-row md:items-end md:gap-12">
                                 <span className="text-[10px] md:text-xs font-mono text-muted-foreground/40 group-hover:text-primary transition-colors duration-300">
                                     {`/${project.id}`}
                                 </span>
@@ -122,13 +122,13 @@ const Projects = () => {
 
                             {/* Mobile Image Preview (Compact) */}
                             {isMobile && (
-                                <div className="mt-8 w-full aspect-video rounded-2xl overflow-hidden border border-border relative">
+                                <div className="overflow-hidden relative mt-8 w-full rounded-2xl border aspect-video border-border">
                                     <img 
                                         src={project.image} 
                                         alt={project.title} 
-                                        className="w-full h-full object-cover opacity-60 dark:opacity-80"
+                                        className="object-cover w-full h-full opacity-60 dark:opacity-80"
                                     />
-                                    <div className="absolute inset-0 bg-linear-to-t from-background via-transparent to-transparent opacity-60" />
+                                    <div className="absolute inset-0 via-transparent to-transparent opacity-60 bg-linear-to-t from-background" />
                                 </div>
                             )}
                         </motion.div>
@@ -159,12 +159,12 @@ const Projects = () => {
                                 initial={{ scale: 1.2 }}
                                 animate={{ scale: 1 }}
                                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                                className="w-full h-full object-cover"
+                                className="object-cover w-full h-full"
                             />
-                            <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent" />
-                            <div className="absolute bottom-10 left-10 right-10">
+                            <div className="absolute inset-0 via-transparent to-transparent bg-linear-to-t from-black/80" />
+                            <div className="absolute right-10 bottom-10 left-10">
                                 <span className="text-[10px] font-mono uppercase tracking-[0.5em] text-primary mb-2 block">Case Study</span>
-                                <p className="text-xl font-bold text-foreground tracking-tight">{projects[activeIndex].title}</p>
+                                <p className="text-xl font-bold tracking-tight text-foreground">{projects[activeIndex].title}</p>
                             </div>
                         </motion.div>
                     )}

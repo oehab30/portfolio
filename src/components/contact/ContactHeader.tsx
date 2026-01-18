@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import TextType from '../ui/TextType';
-import AnimatedLine from "../ui/AnimatedLine";
+import AnimatedLine from "../common/AnimatedLine";
 
 export const ContactHeader = () => (
   <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>

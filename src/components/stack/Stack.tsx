@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import SectionTitle from "../projects/SectionTitle";
+import StageNumber from "../common/Stage-number";
 
 // We set the base color to #000000 (Black) for icons that should toggle.
 // The "dark:invert" class in the JSX will handle turning them white.
@@ -20,18 +21,17 @@ const technologies = [
 
 export default function Stack() {
   return (
-    <section className="mb-24 mt-24 py-24 relative overflow-hidden" id="stack">
+    <section className="overflow-hidden relative py-24 mt-24 mb-24" id="stack">
       {/* Background Decoration */}
-      <div className="absolute top-0 right-10 text-[20vw] md:text-[25vw] font-bold text-foreground/5 leading-none pointer-events-none select-none">
-        03
-      </div>
+       <StageNumber  stageNumber={"03"}/>
+    
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container relative z-10 px-6 mx-auto">
         <div className="mb-16 text-center">
           <SectionTitle title="Front End Skills" subtitle="Tech Arsenal" className="text-center" />
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-2 gap-8 mx-auto max-w-6xl md:grid-cols-4 lg:grid-cols-6">
           {technologies.map((tech, index) => (
             <motion.div
               key={tech.name}
@@ -39,7 +39,7 @@ export default function Stack() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
-              className="group flex flex-col items-center justify-center gap-4 p-6 rounded-2xl bg-secondary/50 border border-border hover:border-primary/50 transition-all duration-300 hover:bg-secondary"
+              className="flex flex-col gap-4 justify-center items-center p-6 rounded-2xl border transition-all duration-300 group bg-secondary/50 border-border hover:border-primary/50 hover:bg-secondary"
             >
               <motion.div
                 animate={{
@@ -51,11 +51,11 @@ export default function Stack() {
                   ease: "easeInOut",
                   delay: index * 0.2,
                 }}
-                className="relative w-16 h-16 flex items-center justify-center"
+                className="flex relative justify-center items-center w-16 h-16"
               >
                 {/* Glow effect behind icon */}
                 <div
-                  className="absolute inset-0 blur-2xl opacity-0 group-hover:opacity-40 transition-opacity duration-500 rounded-full"
+                  className="absolute inset-0 rounded-full opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-40"
                   style={{ 
                     backgroundColor: tech.color === "#000000" ? "var(--foreground)" : tech.color 
                   }}
@@ -74,7 +74,7 @@ export default function Stack() {
                 />
               </motion.div>
 
-              <span className="font-bold text-sm tracking-wide text-muted-foreground group-hover:text-foreground transition-colors">
+              <span className="text-sm font-bold tracking-wide transition-colors text-muted-foreground group-hover:text-foreground">
                 {tech.name}
               </span>
             </motion.div>

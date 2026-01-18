@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { Link } from "react-router-dom";
-import Magnetic from "@/components/layout/Magnetic Wrapper";
+import Magnetic from "@/components/common/Magnetic Wrapper";
 
 function DistortedObject() {
     const meshRef = useRef<THREE.Mesh>(null!);

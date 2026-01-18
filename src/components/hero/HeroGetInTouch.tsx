@@ -1,5 +1,5 @@
 import React from 'react'
-import Magnetic from '@/components/layout/Magnetic Wrapper'
+import Magnetic from '@/components/common/Magnetic Wrapper'
 
 function HeroGetInTouch() {
   return (

@@ -7,7 +7,7 @@ import HeroDescription from "./HeroDescription";
 import HeroGetInTouch from "./HeroGetInTouch";
 import HeroViewWork from "./HeroViewWork";
 import HeroDownloadCV from "./HeroDownloadCV";
-import AnimatedLine from "../ui/AnimatedLine";
+import AnimatedLine from "../common/AnimatedLine";
 
 const Hero = () => {
   

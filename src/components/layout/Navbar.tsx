@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import Magnetic from "@/components/layout/Magnetic Wrapper";
+import Magnetic from "@/components/common/Magnetic Wrapper";
 import { Home, User, Layers, Briefcase, Mail } from "lucide-react";
 
 export default function Navbar() {
