@@ -13,7 +13,7 @@ export const ContactInput = ({ label, type = "text", placeholder, value, onChang
     <div className="space-y-2">
       <label className="text-xs font-mono uppercase tracking-widest text-muted-foreground/80 ml-1">{label}</label>
       {textarea ? (
-        <textarea rows={5} value={value} onChange={(e) => onChange(e.target.value)} className={`${baseClass} resize-none`} placeholder={placeholder} />
+        <textarea rows={5} value={value} onChange={(e) => onChange(e.target.value)} className={`${baseClass} resize-none`} placeholder={placeholder} required />
       ) : (
         <input type={type} value={value} onChange={(e) => onChange(e.target.value)} className={baseClass} placeholder={placeholder} required />
       )}

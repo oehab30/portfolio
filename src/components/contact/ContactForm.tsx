@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Send } from "lucide-react";
 import { ContactInput } from "./ContactInput";
 
@@ -10,10 +10,40 @@ export const ContactForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('sending');
-    await new Promise(r => setTimeout(r, 2000));
-    setStatus('sent');
-    setForm({ name: '', email: '', message: '' });
-    setTimeout(() => setStatus('idle'), 5000);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "57fb3185-b924-4a9a-9e98-68a5cf2dd09e",
+          name: form.name,
+          email: form.email,
+          message: form.message,
+          from_name: "Portfolio Contact Form",
+          subject: `New Message from ${form.name}`,
+        }),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setStatus('sent');
+        setForm({ name: '', email: '', message: '' });
+      } else {
+        console.error("Submission failed:", result);
+        setStatus('idle');
+        alert("Failed to send message. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setStatus('idle');
+      alert("An error occurred. Please try again later.");
+    } finally {
+      setTimeout(() => setStatus('idle'), 5000);
+    }
   };
 
   return (
