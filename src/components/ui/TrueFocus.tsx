@@ -101,7 +101,7 @@ const TrueFocus: React.FC<TrueFocusProps> = memo(({
 
   return (
     <div
-      className="relative flex gap-4 justify-center items-center flex-wrap"
+      className="relative flex gap-2 sm:gap-4 justify-center items-center flex-wrap"
       ref={containerRef}
       style={{ outline: 'none', userSelect: 'none' }}
     >
@@ -113,7 +113,7 @@ const TrueFocus: React.FC<TrueFocusProps> = memo(({
             key={`${word}-${index}`}
             ref={el => { wordRefs.current[index] = el; }}
             type="button"
-            className="relative bg-transparent border-none p-0 text-5xl sm:text-7xl md:text-7xl lg:text-8xl font-black transition-all duration-300 focus:outline-none"
+            className="relative bg-transparent border-none p-0 text-5xl xs:text-5xl sm:text-7xl md:text-7xl lg:text-8xl font-black transition-all duration-300 focus:outline-none"
             style={{
               filter: `blur(${isActive ? 0 : blurAmount}px)`,
               transition: `filter ${animationDuration}s ease`,

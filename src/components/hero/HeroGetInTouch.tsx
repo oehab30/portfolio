@@ -6,7 +6,7 @@ function HeroGetInTouch() {
     <Magnetic strength={0.2}>
       <a 
         href="#contact"
-        className="group relative px-8 py-3 text-muted-foreground hover:text-foreground uppercase text-xs tracking-[0.2em] transition-colors duration-300"
+        className="group relative px-5 py-3 sm:px-8 text-muted-foreground hover:text-foreground uppercase text-xs tracking-[0.2em] transition-colors duration-300"
       >
         {/* Text turns to Foreground color (Black in Light / White in Dark) on hover */}
         <span className="relative z-10">Get In Touch</span>

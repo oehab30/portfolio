@@ -15,7 +15,7 @@ function Mousescroll() {
         <div className="relative w-6 h-10 border-2 border-foreground/20
          dark:border-white/30 rounded-full p-1 flex justify-center
           backdrop-blur-sm group-hover:border-primary transition-colors duration-300 shadow-sm
-          mb-4  xl:mb-8 ">
+          mb-2  xl:mb-8 ">
           {/* Animated "Wheel" */}
           <motion.div
             animate={{

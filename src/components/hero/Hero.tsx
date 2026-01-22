@@ -12,7 +12,7 @@ import AnimatedLine from "../common/AnimatedLine";
 
 const Hero = memo(() => {
   return (
-    <section className="relative min-h-dvh flex flex-col justify-center items-center text-center overflow-hidden z-20 py-20 px-4">
+    <section className="relative min-h-dvh flex flex-col justify-center items-center text-center overflow-hidden z-20 py-12 md:py-20 px-4">
       
       {/* Background Ambience (Dynamic Glow) */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-primary-deep rounded-full blur-[80px] md:blur-[120px] -z-10 mix-blend-multiply dark:mix-blend-screen opacity-20 dark:opacity-40 pointer-events-none transition-all duration-700" />
@@ -63,7 +63,7 @@ const Hero = memo(() => {
           custom={4}
           initial="hidden"
           animate="visible"
-          className="flex sm:gap-6 md:max-lg:gap-4 items-center" >
+          className="flex  xs: gap-4 sm:gap-6 md:max-lg:gap-4 items-center" >
             
         {/* View Works */} <HeroViewWork/>
         {/* Get In Touch */} <HeroGetInTouch/>

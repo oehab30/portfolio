@@ -31,7 +31,7 @@ export const ProjectCard = memo(({ project, index, activeIndex, setActiveIndex, 
       onMouseEnter={() => !isMobile && setActiveIndex(index)}
       onMouseLeave={() => !isMobile && setActiveIndex(null)}
     >
-      <a href={project.link} className="flex flex-col gap-4 transition-all duration-500 md:flex-row md:items-end md:gap-12">
+      <a href={project.link} target="_blank"  className=" flex flex-col gap-4 transition-all duration-500 md:flex-row md:items-end md:gap-12">
         <span className="text-[10px] md:text-xs font-mono text-muted-foreground/40 group-hover:text-primary transition-colors duration-300" aria-hidden="true">
           {`/${project.id}`}
         </span>
