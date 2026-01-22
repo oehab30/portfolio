@@ -1,8 +1,9 @@
+import { memo } from "react";
 import { motion } from "framer-motion";
 import Magnetic from "@/components/common/Magnetic Wrapper";
 import { Home, User, Layers, Briefcase, Mail } from "lucide-react";
 
-export default function Navbar() {
+const Navbar = memo(() => {
   const links = [
     { href: "/#home", label: "HOME", icon: Home },
     { href: "/#about", label: "ABOUT", icon: User },
@@ -39,11 +40,11 @@ export default function Navbar() {
                     hover:text-primary py-4
                   "
                 >
-                  <span className="absolute right-[-12px] top-1/2 -translate-y-1/2 w-[2px] h-0 bg-primary transition-all duration-300 group-hover:h-full group-hover:shadow-[0_0_10px_#8b5cf6]" />
+                  <span className="absolute right-[-12px] top-1/2 -translate-y-1/2 w-[2px] h-0 bg-primary transition-all duration-300 group-hover:h-full group-hover:shadow-[0_0_10px_#8b5cf6]" aria-hidden="true" />
                   <span className="uppercase relative z-10 py-2 group-hover:scale-110 transition-transform duration-300">
                     {item.label}
                   </span>
-                  <span className="absolute inset-0 bg-primary/20 blur-lg rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                  <span className="absolute inset-0 bg-primary/20 blur-lg rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" aria-hidden="true" />
                 </a>
               </Magnetic>
             </li>
@@ -59,18 +60,24 @@ export default function Navbar() {
             href={item.href}
             onClick={(e) => handleScroll(e, item.href)}
             className="flex-1 flex flex-col items-center justify-center gap-1 py-3 px-2 rounded-xl transition-all duration-300 relative group"
+            aria-label={item.label}
           >
-            <item.icon size={18} className="text-muted-foreground group-hover:text-primary transition-colors" />
+            <item.icon size={18} className="text-muted-foreground group-hover:text-primary transition-colors" aria-hidden="true" />
             <span className="text-[10px] font-mono tracking-tighter text-muted-foreground/60 group-hover:text-white transition-colors">
               {item.label.slice(0, 3)}
             </span>
             <motion.div 
               layoutId="nav-glow"
               className="absolute inset-0 bg-primary/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" 
+              aria-hidden="true"
             />
           </a>
         ))}
       </nav>
     </>
   );
-}
+});
+
+Navbar.displayName = "Navbar";
+
+export default Navbar;

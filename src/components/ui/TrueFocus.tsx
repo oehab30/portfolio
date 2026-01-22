@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useMemo, useCallback } from 'react';
+import { useEffect, useRef, useState, useMemo, useCallback, memo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface TrueFocusProps {
@@ -19,7 +19,7 @@ interface FocusRect {
   height: number;
 }
 
-const FocusCorner = ({ side }: { side: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' }) => {
+const FocusCorner = memo(({ side }: { side: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' }) => {
   const positions = {
     'top-left': 'top-[-4px] left-[-4px] border-r-0 border-b-0',
     'top-right': 'top-[-4px] right-[-4px] border-l-0 border-b-0',
@@ -34,11 +34,14 @@ const FocusCorner = ({ side }: { side: 'top-left' | 'top-right' | 'bottom-left' 
         borderColor: 'var(--border-color)',
         filter: 'drop-shadow(0 0 4px var(--border-color))'
       }}
+      aria-hidden="true"
     />
   );
-};
+});
 
-const TrueFocus: React.FC<TrueFocusProps> = ({
+FocusCorner.displayName = 'FocusCorner';
+
+const TrueFocus: React.FC<TrueFocusProps> = memo(({
   sentence = 'Omar Ehab',
   separator = ' ',
   manualMode = false,
@@ -110,7 +113,7 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
             key={`${word}-${index}`}
             ref={el => { wordRefs.current[index] = el; }}
             type="button"
-            className="relative bg-transparent border-none p-0 text-5xl sm:text-7xl md:text-7xl lg:text-8xl font-black  transition-all duration-300"
+            className="relative bg-transparent border-none p-0 text-5xl sm:text-7xl md:text-7xl lg:text-8xl font-black transition-all duration-300 focus:outline-none"
             style={{
               filter: `blur(${isActive ? 0 : blurAmount}px)`,
               transition: `filter ${animationDuration}s ease`,
@@ -160,7 +163,9 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
       </AnimatePresence>
     </div>
   );
-};
+});
+
+TrueFocus.displayName = 'TrueFocus';
 
 export default TrueFocus;
 

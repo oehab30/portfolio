@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { motion } from 'framer-motion';
 import { IconType } from 'react-icons';
 import { itemVariants } from './AboutVariants';
@@ -12,20 +13,20 @@ interface AboutCardProps {
   mainIcon?: boolean;
 }
 
-function AboutCard({ icon: Icon, title, subtitle, description, date, tags, mainIcon }: Readonly<AboutCardProps>) {
+const AboutCard = memo(({ icon: Icon, title, subtitle, description, date, tags, mainIcon }: Readonly<AboutCardProps>) => {
   return (
     <motion.div 
       variants={itemVariants}
       className="overflow-hidden relative p-10 rounded-3xl border transition-all duration-700 group bg-secondary/50 border-border hover:bg-secondary hover:border-primary/20"
     >
       {mainIcon && (
-        <div className="absolute top-0 right-0 p-8 opacity-5 transition-opacity group-hover:opacity-10">
+        <div className="absolute top-0 right-0 p-8 opacity-5 transition-opacity group-hover:opacity-10" aria-hidden="true">
           <Icon size={120} />
         </div>
       )}
       <div className="flex relative z-10 flex-col gap-8 md:flex-row">
         <div className="flex justify-center items-center w-16 h-16 rounded-2xl transition-all duration-500 bg-primary/5 text-primary group-hover:bg-primary group-hover:text-black">
-          <Icon size={24} />
+          <Icon size={24} aria-hidden="true" />
         </div>
         <div className="flex-1 space-y-4">
           <div className="flex justify-between items-start">
@@ -45,18 +46,20 @@ function AboutCard({ icon: Icon, title, subtitle, description, date, tags, mainI
             {description}
           </p>
           {tags && (
-            <div className="flex flex-wrap gap-2">
+            <ul className="flex flex-wrap gap-2" aria-label={`Tags for ${title}`}>
               {tags.map(tag => (
-                <span key={tag} className="text-[10px] font-mono py-1 px-4 rounded-lg bg-secondary border border-border text-foreground/30 group-hover:text-primary transition-colors">
+                <li key={tag} className="text-[10px] font-mono py-1 px-4 rounded-lg bg-secondary border border-border text-foreground/30 group-hover:text-primary transition-colors">
                   {tag}
-                </span>
+                </li>
               ))}
-            </div>
+            </ul>
           )}
         </div>
       </div>
     </motion.div>
   );
-}
+});
+
+AboutCard.displayName = 'AboutCard';
 
 export default AboutCard;

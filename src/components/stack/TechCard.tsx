@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { motion } from "framer-motion";
 
 interface TechCardProps {
@@ -9,7 +10,7 @@ interface TechCardProps {
   index: number;
 }
 
-export function TechCard({ tech, index }: TechCardProps) {
+export const TechCard = memo(({ tech, index }: TechCardProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -35,6 +36,7 @@ export function TechCard({ tech, index }: TechCardProps) {
           style={{ 
             backgroundColor: tech.color === "#000000" ? "var(--foreground)" : tech.color 
           }}
+          aria-hidden="true"
         />
         
         <img
@@ -50,4 +52,6 @@ export function TechCard({ tech, index }: TechCardProps) {
       </span>
     </motion.div>
   );
-}
+});
+
+TechCard.displayName = "TechCard";

@@ -1,23 +1,28 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, memo } from 'react';
+import { motion, useMotionValue, useMotionTemplate } from 'framer-motion';
 import Antigravity from '@/components/ui/Antigravity';
 
 interface BackgroundProps {
   children?: ReactNode;
 }
 
-const Background: React.FC<BackgroundProps> = ({ children }) => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+const Background = memo(({ children }: BackgroundProps) => {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const handleMouseMove = (event: MouseEvent) => {
-      setMousePosition({ x: event.clientX, y: event.clientY });
+      mouseX.set(event.clientX);
+      mouseY.set(event.clientY);
     };
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, []);
+  }, [mouseX, mouseY]);
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-background text-foreground transition-colors duration-700 font-body">
@@ -29,23 +34,24 @@ const Background: React.FC<BackgroundProps> = ({ children }) => {
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
           opacity: 'var(--film-grain-opacity)'
         }}
+        aria-hidden="true"
       />
       
       {/* 0.5 Cinematic Vignette - Subtler and Theme Aware */}
-      <div className="fixed inset-0 pointer-events-none z-40 bg-linear-to-b from-background/10 via-transparent to-background/40 dark:from-black/10 dark:to-black/60" />
+      <div className="fixed inset-0 pointer-events-none z-40 bg-linear-to-b from-background/10 via-transparent to-background/40 dark:from-black/10 dark:to-black/60" aria-hidden="true" />
 
       {/* 0.6 Active Mouse Spotlight - Theme Aware Color */}
-      <div 
+      <motion.div 
         className="fixed inset-0 z-30 pointer-events-none transition-opacity duration-300"
         style={{
-          background: `radial-gradient(800px circle at ${mousePosition.x}px ${mousePosition.y}px, var(--primary-deep), transparent 40%)`,
+          background: useMotionTemplate`radial-gradient(800px circle at ${mouseX}px ${mouseY}px, var(--primary-deep), transparent 40%)`,
           opacity: 0.08
         }}
+        aria-hidden="true"
       />
 
-
       {/* 1. The Animation Layer (Subtle Gold Dust) */}
-      <div className="fixed inset-0 z-0 pointer-events-none opacity-30">
+      <div className="fixed inset-0 z-0 pointer-events-none opacity-30" aria-hidden="true">
         <Antigravity
           count={80} // Fewer particles for elegance
           magnetRadius={15}
@@ -66,6 +72,8 @@ const Background: React.FC<BackgroundProps> = ({ children }) => {
       </div>
     </div>
   );
-};
+});
+
+Background.displayName = 'Background';
 
 export default Background;

@@ -1,8 +1,9 @@
+import { memo } from 'react';
 import { motion } from 'framer-motion';
 import { itemVariants } from './AboutVariants';
 import AboutStats from './AboutStats';
 
-function AboutNarrative() {
+const AboutNarrative = memo(() => {
   return (
     <div className="space-y-16 lg:col-span-5">
       <motion.div 
@@ -25,22 +26,24 @@ function AboutNarrative() {
           </p>
         </div>
 
-        <div className="flex gap-8 items-center pt-4">
+        <dl className="flex gap-8 items-center pt-4">
           <div>
-            <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-primary mb-1">Status</p>
-            <p className="text-xs tracking-widest uppercase text-foreground/80">Available for hire</p>
+            <dt className="text-[10px] font-mono uppercase tracking-[0.3em] text-primary mb-1">Status</dt>
+            <dd className="text-xs tracking-widest uppercase text-foreground/80">Available for hire</dd>
           </div>
-          <div className="w-px h-10 bg-foreground/10" />
+          <div className="w-px h-10 bg-foreground/10" aria-hidden="true" />
           <div>
-            <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-primary mb-1">Vibe</p>
-            <p className="text-xs tracking-widest uppercase text-foreground/80">Boutique & Precise</p>
+            <dt className="text-[10px] font-mono uppercase tracking-[0.3em] text-primary mb-1">Vibe</dt>
+            <dd className="text-xs tracking-widest uppercase text-foreground/80">Boutique & Precise</dd>
           </div>
-        </div>
+        </dl>
       </motion.div>
 
       <AboutStats />
     </div>
   );
-}
+});
+
+AboutNarrative.displayName = 'AboutNarrative';
 
 export default AboutNarrative;

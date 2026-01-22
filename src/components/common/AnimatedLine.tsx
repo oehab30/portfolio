@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { motion } from "framer-motion";
 
 interface AnimatedLineProps {
@@ -7,7 +8,7 @@ interface AnimatedLineProps {
   textColor?: string;
 }
 
-const AnimatedLine = ({
+const AnimatedLine = memo(({
   text = "Frontend Developer",
   lines = 2,               // 1 or 2
   lineColor = "bg-primary/40",
@@ -27,6 +28,7 @@ const AnimatedLine = ({
             x: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1.6 },
           }}
           className={`h-px ${lineColor}`}
+          aria-hidden="true"
         />
       )}
 
@@ -54,10 +56,13 @@ const AnimatedLine = ({
             x: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1.6 },
           }}
           className={`h-px ${lineColor}`}
+          aria-hidden="true"
         />
       )}
     </div>
   );
-};
+});
+
+AnimatedLine.displayName = "AnimatedLine";
 
 export default AnimatedLine;

@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { motion } from "framer-motion";
 import { IoMailSharp } from "react-icons/io5";
 import { FaLocationDot } from "react-icons/fa6";
@@ -9,9 +10,7 @@ import HeroViewWork from "./HeroViewWork";
 import HeroDownloadCV from "./HeroDownloadCV";
 import AnimatedLine from "../common/AnimatedLine";
 
-const Hero = () => {
-  
-
+const Hero = memo(() => {
   return (
     <section className="relative min-h-dvh flex flex-col justify-center items-center text-center overflow-hidden z-20 py-20 px-4">
       
@@ -23,11 +22,8 @@ const Hero = () => {
 
       <AnimatedLine text="Frontend Developer" />
 
- 
-        
-
-
-        {/* Main Title - Name (TrueFocus) */}
+        {/* Main Title - Name (TrueFocus) */
+        /* TrueFocus renders an h1 */}
         <div className=" mb-6 md:mb-8 mt-2 relative z-20">
             <TrueFocus
               sentence="OMAR EHAB"
@@ -49,11 +45,15 @@ const Hero = () => {
             className="flex sm:flex-row items-center gap-4 sm:gap-6 md:gap-12 text-[10px] md:text-sm font-body text-muted-foreground mb-8 md:mb-12"
         >
             <div className="flex items-center gap-2 transition-all hover:text-primary duration-300 hover:scale-105">
-                <FaLocationDot className="text-primary" /> 
+                <FaLocationDot className="text-primary" aria-hidden="true" /> 
                 <span className="tracking-wide text-[10px] sm:text-xs md:text-sm">Cairo, Egypt</span>
             </div>
-            <a href="mailto:oehab785@gmail.com" className="flex items-center gap-2 transition-all hover:text-primary duration-300 hover:scale-105">
-                 <IoMailSharp className="text-primary" />
+            <a 
+              href="mailto:oehab785@gmail.com" 
+              className="flex items-center gap-2 transition-all hover:text-primary duration-300 hover:scale-105"
+              aria-label="Email oehab785@gmail.com"
+            >
+                 <IoMailSharp className="text-primary" aria-hidden="true" />
                  <span className="tracking-wide text-[10px] sm:text-xs md:text-sm">oehab785@gmail.com</span>
             </a>
         </motion.div>
@@ -63,14 +63,12 @@ const Hero = () => {
           custom={4}
           initial="hidden"
           animate="visible"
-          className="flex  sm:gap-6 md:max-lg:gap-4  items-center" >
+          className="flex sm:gap-6 md:max-lg:gap-4 items-center" >
             
         {/* View Works */} <HeroViewWork/>
         {/* Get In Touch */} <HeroGetInTouch/>
         
         </motion.div>
-
-
 
         {/* Download Resume */}
      <HeroDownloadCV/>
@@ -82,6 +80,8 @@ const Hero = () => {
 
     </section>
   );
-};
+});
+
+Hero.displayName = "Hero";
 
 export default Hero;

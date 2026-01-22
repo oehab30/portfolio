@@ -1,9 +1,14 @@
-import { useRef } from "react";
+import { useRef, memo, ReactNode } from "react";
 
-export default function Magnetic({ children, strength = 0.15 }) {
-  const ref = useRef(null);
+interface MagneticProps {
+  children: ReactNode;
+  strength?: number;
+}
 
-  const handleMouseMove = (e) => {
+const Magnetic = memo(({ children, strength = 0.15 }: MagneticProps) => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const el = ref.current;
     if (!el) return;
 
@@ -29,4 +34,8 @@ export default function Magnetic({ children, strength = 0.15 }) {
       {children}
     </div>
   );
-}
+});
+
+Magnetic.displayName = "Magnetic";
+
+export default Magnetic;

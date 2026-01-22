@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -16,7 +17,7 @@ interface ProjectCardProps {
   isMobile: boolean;
 }
 
-export function ProjectCard({ project, index, activeIndex, setActiveIndex, isMobile }: ProjectCardProps) {
+export const ProjectCard = memo(({ project, index, activeIndex, setActiveIndex, isMobile }: ProjectCardProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, x: -20 }}
@@ -31,7 +32,7 @@ export function ProjectCard({ project, index, activeIndex, setActiveIndex, isMob
       onMouseLeave={() => !isMobile && setActiveIndex(null)}
     >
       <a href={project.link} className="flex flex-col gap-4 transition-all duration-500 md:flex-row md:items-end md:gap-12">
-        <span className="text-[10px] md:text-xs font-mono text-muted-foreground/40 group-hover:text-primary transition-colors duration-300">
+        <span className="text-[10px] md:text-xs font-mono text-muted-foreground/40 group-hover:text-primary transition-colors duration-300" aria-hidden="true">
           {`/${project.id}`}
         </span>
         
@@ -50,7 +51,7 @@ export function ProjectCard({ project, index, activeIndex, setActiveIndex, isMob
         <div className={cn(
           "hidden md:flex p-4 rounded-full border border-border transition-all duration-500 opacity-0 group-hover:opacity-100",
           activeIndex === index ? "bg-primary text-primary-foreground scale-110" : "scale-75"
-        )}>
+        )} aria-hidden="true">
           <ArrowUpRight size={24} />
         </div>
       </a>
@@ -67,11 +68,13 @@ export function ProjectCard({ project, index, activeIndex, setActiveIndex, isMob
           <div className="absolute bottom-4 left-4 right-4">
              <div className="flex justify-between items-center">
                 <span className="text-[8px] font-mono text-primary uppercase tracking-widest">View Project</span>
-                <ArrowUpRight size={16} className="text-primary" />
+                <ArrowUpRight size={16} className="text-primary" aria-hidden="true" />
              </div>
           </div>
         </div>
       )}
     </motion.div>
   );
-}
+});
+
+ProjectCard.displayName = "ProjectCard";

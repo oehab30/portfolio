@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, memo } from "react";
 import { motion, AnimatePresence, useSpring, useMotionValue } from "framer-motion";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { projects } from "./project_data";
 import { ProjectCard } from "./ProjectCard";
 import { FloatingImage } from "./FloatingImage";
 
-export function ProjectsContainer() {
+export const ProjectsContainer = memo(() => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -66,6 +66,7 @@ export function ProjectsContainer() {
       <div 
         ref={scrollRef}
         className="flex overflow-x-auto pb-12 gap-8 scrollbar-hide snap-x lg:flex-col lg:overflow-visible lg:pb-0 lg:gap-0"
+        aria-label="Projects list"
       >
         {projects.map((project, index) => (
           <ProjectCard 
@@ -88,8 +89,9 @@ export function ProjectsContainer() {
             exit={{ opacity: 0, x: -10 }}
             onClick={() => scroll("left")}
             className="absolute left-[-12px] top-1/2 -translate-y-1/2 z-20 flex justify-center items-center w-12 h-12 rounded-full border shadow-xl backdrop-blur-xl bg-background/90 border-primary/30 text-primary active:scale-90 transition-all"
+            aria-label="Scroll left"
           >
-            <ChevronLeft size={24} />
+            <ChevronLeft size={24} aria-hidden="true" />
           </motion.button>
         )}
 
@@ -100,8 +102,9 @@ export function ProjectsContainer() {
             exit={{ opacity: 0, x: 10 }}
             onClick={() => scroll("right")}
             className="absolute right-[-12px] top-1/2 -translate-y-1/2 z-20 flex justify-center items-center w-12 h-12 rounded-full border shadow-xl backdrop-blur-xl bg-background/90 border-primary/30 text-primary active:scale-90 transition-all"
+            aria-label="Scroll right"
           >
-            <ChevronRight size={24} />
+            <ChevronRight size={24} aria-hidden="true" />
           </motion.button>
         )}
       </AnimatePresence>
@@ -118,4 +121,6 @@ export function ProjectsContainer() {
       </AnimatePresence>
     </div>
   );
-}
+});
+
+ProjectsContainer.displayName = "ProjectsContainer";

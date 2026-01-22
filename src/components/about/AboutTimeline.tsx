@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { motion } from 'framer-motion';
 import { FaSuitcase } from 'react-icons/fa';
 import { RiGraduationCapFill } from 'react-icons/ri';
@@ -5,7 +6,7 @@ import { PiMedalFill } from 'react-icons/pi';
 import { containerVariants, lineVariants } from './AboutVariants';
 import AboutCard from './AboutCard';
 
-function AboutTimeline() {
+const AboutTimeline = memo(() => {
   return (
     <motion.div 
       className="space-y-8 lg:col-span-7"
@@ -45,6 +46,8 @@ function AboutTimeline() {
       />
     </motion.div>
   );
-}
+});
+
+AboutTimeline.displayName = 'AboutTimeline';
 
 export default AboutTimeline;

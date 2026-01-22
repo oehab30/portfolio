@@ -1,9 +1,10 @@
+import { memo } from "react";
 import SectionTitle from "../projects/SectionTitle";
 import StageNumber from "../common/Stage-number";
 import { StackContainer } from "./stackcontainer";
 import { ContactParticles } from "../contact/ContactParticles";
 
-export default function Stack() {
+const Stack = memo(() => {
   return (
     <section className="overflow-hidden relative py-24 mt-24 mb-24" id="stack">
       {/* Background Decoration */}
@@ -20,4 +21,8 @@ export default function Stack() {
       </div>
     </section>
   );
-}
+});
+
+Stack.displayName = "Stack";
+
+export default Stack;

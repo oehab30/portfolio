@@ -1,13 +1,20 @@
-import React from 'react'
+import React, { memo } from 'react';
 
 interface StageNumberProps {
     stageNumber: string
 }
-function StageNumber({stageNumber}) {
-  return (
- <div className="absolute top-0 right-10 text-[25vw] md:text-[25vw] font-bold text-foreground/5 leading-none pointer-events-none select-none">
-        {stageNumber}
-  </div>  )
-}
 
-export default StageNumber
+const StageNumber = memo(({stageNumber}: StageNumberProps) => {
+  return (
+    <div 
+        className="absolute top-0 right-10 text-[25vw] md:text-[25vw] font-bold text-foreground/5 leading-none pointer-events-none select-none"
+        aria-hidden="true"
+    >
+        {stageNumber}
+    </div>
+  );
+});
+
+StageNumber.displayName = "StageNumber";
+
+export default StageNumber;

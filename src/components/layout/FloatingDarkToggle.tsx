@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sun, Moon } from 'lucide-react';
 
-function FloatingDarkToggle() {
+const FloatingDarkToggle = memo(() => {
   const [isDark, setIsDark] = useState(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('theme');
@@ -36,6 +36,7 @@ function FloatingDarkToggle() {
           <button
             onClick={() => setIsDark(!isDark)}
             className="relative w-16 h-8 rounded-full bg-gray-200/50 dark:bg-zinc-800/50 border border-white/10 transition-colors duration-500 overflow-hidden cursor-pointer active:scale-95 group"
+            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
           >
             <motion.div
               animate={{ x: isDark ? 32 : 0 }}
@@ -51,7 +52,7 @@ function FloatingDarkToggle() {
                     exit={{ scale: 0.5, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Moon className="w-3.5 h-3.5 text-white fill-current" />
+                    <Moon className="w-3.5 h-3.5 text-white fill-current" aria-hidden="true" />
                   </motion.div>
                 ) : (
                   <motion.div
@@ -61,14 +62,14 @@ function FloatingDarkToggle() {
                     exit={{ scale: 0.5, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Sun className="w-3.5 h-3.5 text-orange-500" />
+                    <Sun className="w-3.5 h-3.5 text-orange-500" aria-hidden="true" />
                   </motion.div>
                 )}
               </AnimatePresence>
             </motion.div>
 
             {/* Background Track Icons */}
-            <div className="absolute inset-0 flex justify-between items-center px-2.5 pointer-events-none opacity-20 dark:opacity-40">
+            <div className="absolute inset-0 flex justify-between items-center px-2.5 pointer-events-none opacity-20 dark:opacity-40" aria-hidden="true">
               <Sun className="w-3 h-3 text-orange-500" />
               <Moon className="w-3 h-3 text-white" />
             </div>
@@ -77,6 +78,8 @@ function FloatingDarkToggle() {
       </motion.div>
     </AnimatePresence>
   );
-}
+});
+
+FloatingDarkToggle.displayName = "FloatingDarkToggle";
 
 export default FloatingDarkToggle;

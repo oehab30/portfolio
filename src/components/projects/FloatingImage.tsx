@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { motion } from "framer-motion";
 import { projects } from "./project_data";
 
@@ -7,7 +8,7 @@ interface FloatingImageProps {
   imageY: any;
 }
 
-export function FloatingImage({ activeIndex, imageX, imageY }: FloatingImageProps) {
+export const FloatingImage = memo(({ activeIndex, imageX, imageY }: FloatingImageProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.8, filter: 'blur(20px)' }}
@@ -37,4 +38,6 @@ export function FloatingImage({ activeIndex, imageX, imageY }: FloatingImageProp
       </div>
     </motion.div>
   );
-}
+});
+
+FloatingImage.displayName = "FloatingImage";

@@ -1,8 +1,9 @@
+import { memo } from 'react';
 import { motion } from 'framer-motion';
 import AnimatedLine from '../common/AnimatedLine';
 import { itemVariants } from './AboutVariants';
 
-function AboutHeader() {
+const AboutHeader = memo(() => {
   return (
     <div className="flex flex-col gap-8 justify-between items-start mb-24 md:flex-row md:items-end md:mb-32">
       <motion.div 
@@ -34,6 +35,8 @@ function AboutHeader() {
       </motion.div>
     </div>
   );
-}
+});
+
+AboutHeader.displayName = 'AboutHeader';
 
 export default AboutHeader;
