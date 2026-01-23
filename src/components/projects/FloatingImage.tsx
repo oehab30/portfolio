@@ -1,11 +1,11 @@
 import { memo } from "react";
-import { motion } from "framer-motion";
+import { motion, MotionValue } from "framer-motion";
 import { projects } from "./project_data";
 
 interface FloatingImageProps {
   activeIndex: number;
-  imageX: any;
-  imageY: any;
+  imageX: MotionValue<number>;
+  imageY: MotionValue<number>;
 }
 
 export const FloatingImage = memo(({ activeIndex, imageX, imageY }: FloatingImageProps) => {

@@ -50,19 +50,26 @@ const AntigravityInner: React.FC<AntigravityProps> = ({
     const width = viewport.width || 100;
     const height = viewport.height || 100;
 
+    // Use a fixed seed for "purity" during render if count/dimensions haven't changed
+    let seed = 1;
+    const rnd = () => {
+      const x = Math.sin(seed++) * 10000;
+      return x - Math.floor(x);
+    };
+
     for (let i = 0; i < count; i++) {
-      const t = Math.random() * 100;
-      const factor = 20 + Math.random() * 100;
-      const speed = 0.01 + Math.random() / 200;
-      const xFactor = -50 + Math.random() * 100;
-      const yFactor = -50 + Math.random() * 100;
-      const zFactor = -50 + Math.random() * 100;
+      const t = rnd() * 100;
+      const factor = 20 + rnd() * 100;
+      const speed = 0.01 + rnd() / 200;
+      const xFactor = -50 + rnd() * 100;
+      const yFactor = -50 + rnd() * 100;
+      const zFactor = -50 + rnd() * 100;
 
-      const x = (Math.random() - 0.5) * width;
-      const y = (Math.random() - 0.5) * height;
-      const z = (Math.random() - 0.5) * 20;
+      const x = (rnd() - 0.5) * width;
+      const y = (rnd() - 0.5) * height;
+      const z = (rnd() - 0.5) * 20;
 
-      const randomRadiusOffset = (Math.random() - 0.5) * 2;
+      const randomRadiusOffset = (rnd() - 0.5) * 2;
 
       temp.push({
         t,
@@ -118,9 +125,9 @@ const AntigravityInner: React.FC<AntigravityProps> = ({
     const globalRotation = state.clock.getElapsedTime() * rotationSpeed;
 
     particles.forEach((particle, i) => {
-      let { t, speed, mx, my, mz, cz, randomRadiusOffset } = particle;
+      const { speed, mx, my, mz, cz, randomRadiusOffset } = particle;
 
-      t = particle.t += speed / 2;
+      const t = (particle.t += speed / 2);
 
       const projectionFactor = 1 - cz / 50;
       const projectedTargetX = targetX * projectionFactor;
@@ -130,7 +137,7 @@ const AntigravityInner: React.FC<AntigravityProps> = ({
       const dy = my - projectedTargetY;
       const dist = Math.sqrt(dx * dx + dy * dy);
 
-      let targetPos = { x: mx, y: my, z: mz * depthFactor };
+      const targetPos = { x: mx, y: my, z: mz * depthFactor };
 
       if (dist < magnetRadius) {
         const angle = Math.atan2(dy, dx) + globalRotation;

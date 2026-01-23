@@ -7,10 +7,15 @@ function ParticleLogic() {
   const particlesCount = 2000;
   const positions = useMemo(() => {
     const pos = new Float32Array(particlesCount * 3);
+    let seed = 1;
+    const rnd = () => {
+      const x = Math.sin(seed++) * 10000;
+      return x - Math.floor(x);
+    };
     for (let i = 0; i < particlesCount; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * 15;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * 15;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 15;
+      pos[i * 3] = (rnd() - 0.5) * 15;
+      pos[i * 3 + 1] = (rnd() - 0.5) * 15;
+      pos[i * 3 + 2] = (rnd() - 0.5) * 15;
     }
     return pos;
   }, []);

@@ -2,9 +2,10 @@ import { memo } from "react";
 import { motion } from "framer-motion";
 import { Mail, MapPin, Github, Linkedin, ExternalLink } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
+import React from "react";
 
 interface ContactInfoCardProps {
-  icon: any;
+  icon: React.ElementType;
   label: string;
   value: string;
   link: string;

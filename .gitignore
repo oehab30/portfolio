@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Compiled files in src
+src/**/*.js
+src/**/*.d.ts

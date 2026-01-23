@@ -1,5 +1,5 @@
-import React, { lazy, Suspense } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import { createBrowserRouter } from "react-router-dom";
 import Layout from "../components/layout/Layout";
 import Loader from "../components/common/Loader";
 
@@ -7,14 +7,11 @@ import Loader from "../components/common/Loader";
 const Home = lazy(() => import("../pages/Home"));
 const ErrorPage = lazy(() => import("../pages/Error"));
 
-// Global Loading Component using the new premium Loader
-const PageLoader = () => <Loader />;
-
 export const router = createBrowserRouter([
   {
     element: (
       // Best Practice: Wrap the Layout in Suspense so all children use it
-      <Suspense fallback={<PageLoader />}>
+      <Suspense fallback={<Loader />}>
         <Layout />
       </Suspense>
     ),
@@ -30,9 +27,3 @@ export const router = createBrowserRouter([
     ],
   },
 ]);
-
-function Routes() {
-  return <RouterProvider router={router} />;
-}
-
-export default Routes;
