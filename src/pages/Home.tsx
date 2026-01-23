@@ -1,8 +1,10 @@
+import { lazy, Suspense } from "react";
 import Hero from "../components/hero/Hero";
-import Stack from "../components/stack/Stack";
-import Projects from "../components/projects/Projects";
-import About from "@/components/about/About";
-import ContactSection from "@/components/contact/contactsection";
+
+const Stack = lazy(() => import("../components/stack/Stack"));
+const Projects = lazy(() => import("../components/projects/Projects"));
+const About = lazy(() => import("@/components/about/About"));
+const ContactSection = lazy(() => import("@/components/contact/contactsection"));
 
 function Home() {
   return (
@@ -10,18 +12,20 @@ function Home() {
       <section id="home">
         <Hero />
       </section>
-      <section id="about">
-        <About />
-      </section>
-      <section id="stack">
-        <Stack />
-      </section>
-      <section id="projects">
-        <Projects />
-      </section>
       
-      <ContactSection />
-      
+      <Suspense fallback={null}>
+        <section id="about">
+          <About />
+        </section>
+        <section id="stack">
+          <Stack />
+        </section>
+        <section id="projects">
+          <Projects />
+        </section>
+        
+        <ContactSection />
+      </Suspense>
     </>
   );
 }

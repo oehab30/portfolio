@@ -49,10 +49,10 @@ const Loader = memo(({ onFinished }: { onFinished?: () => void }) => {
                     return 100;
                 }
                 // Faster increment at the start, slower at the end for "loading" feel
-                const increment = prev < 80 ? Math.floor(Math.random() * 4) + 1 : 1;
+                const increment = prev < 80 ? Math.floor(Math.random() * 10) + 5 : 2;
                 return Math.min(prev + increment, 100);
             });
-        }, 50);
+        }, 20);
 
         return () => clearInterval(interval);
     }, [onFinished]);

@@ -36,9 +36,9 @@ ContactInfoCard.displayName = "ContactInfoCard";
 // Component: ContactDetails info
 export const ContactDetails = memo(() => {
   const details = [
-    { icon: Mail,       label: "Email",   id: "email", value: "oehab785@gmail.com",   link: "mailto:oehab785@gmail.com",color: "group-hover:text-blue-500" },
-    { icon: FaWhatsapp, label: "WhatsApp", id: "whatsapp", value: "+20 111 009 8802", link: "https://wa.me/1110098802" ,color: "group-hover:text-green-500" },
-    { icon: MapPin,     label: "Location", id: "location", value: "Cairo, Egypt",     link: "#"                        ,color: "group-hover:text-red-500" }
+    { icon: Mail,       label: "Email",    id: "email", value: "oehab785@gmail.com",   link: "mailto:oehab785@gmail.com",color: "group-hover:text-blue-500" },
+    { icon: FaWhatsapp, label: "WhatsApp", id: "whatsapp", value: "+20 111 009 8802", link: "https://wa.me/1110098802"  ,color: "group-hover:text-green-500" },
+    { icon: MapPin,     label: "Location", id: "location", value: "Giza, Egypt",      link: "https://www.google.com/maps/place/%D9%85%D8%AF%D9%8A%D9%86%D8%A9+%D9%A6+%D8%A3%D9%83%D8%AA%D9%88%D8%A8%D8%B1%D8%8C+%D9%85%D8%AD%D8%A7%D9%81%D8%B8%D8%A9+%D8%A7%D9%84%D8%AC%D9%8A%D8%B2%D8%A9%E2%80%AD/@29.9642309,31.2228326,10z/data=!3m1!4b1!4m6!3m5!1s0x145855e126df199d:0x24a6cf9d2fda5678!8m2!3d29.9611066!4d30.9295985!16zL20vMGJtMjVq?entry=ttu&g_ep=EgoyMDI2MDEyMS4wIKXMDSoASAFQAw%3D%3D"    ,color: "group-hover:text-red-500" }
   ];
 
   const socialLinks = [
