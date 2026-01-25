@@ -3,7 +3,7 @@ export const technologies = [
   { name: "TypeScript", color: "#3178C6", icon: "https://cdn.simpleicons.org/typescript/3178C6" },
   { name: "Next.js", color: "#000000", icon: "https://cdn.simpleicons.org/nextdotjs/000000" }, 
   { name: "Tailwind", color: "#06B6D4", icon: "https://cdn.simpleicons.org/tailwindcss/06B6D4" },
-  { name: "Three.js", color: "#000000", icon: "https://cdn.simpleicons.org/three.js/000000" },
+  { name: "shadcn/ui", color: "#000000", icon: "https://cdn.simpleicons.org/shadcnui/000000" },
   { name: "Framer Motion", color: "#0055FF", icon: "https://cdn.simpleicons.org/framer/0055FF" },
   { name: "JavaScript", color: "#F7DF1E", icon: "https://cdn.simpleicons.org/javascript/F7DF1E" },
   { name: "HTML5", color: "#E34F26", icon: "https://cdn.simpleicons.org/html5/E34F26" },

@@ -1,4 +1,3 @@
-import React from 'react'
 import Magnetic from '@/components/common/Magnetic Wrapper'
 import { FaArrowRightLong } from 'react-icons/fa6'
 function HeroViewWork() {

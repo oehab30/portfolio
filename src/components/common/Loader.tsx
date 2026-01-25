@@ -3,7 +3,7 @@ import { useEffect, useState, useRef, memo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-function LoadingObject({ progress }: { progress: number }) {
+function LoadingObject({ progress }: Readonly<{ progress: number }>) {
     const meshRef = useRef<THREE.Mesh>(null);
     
     useFrame((state) => {
@@ -63,7 +63,7 @@ const Loader = memo(({ onFinished }: { onFinished?: () => void }) => {
                 <motion.div 
                     initial={{ opacity: 1 }}
                     exit={{ opacity: 0, transition: { duration: 1, ease: [0.22, 1, 0.36, 1] } }}
-                    className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#0a0a0a] overflow-hidden"
+                    className="fixed inset-0 z-9999 flex flex-col items-center justify-center bg-[#0a0a0a] overflow-hidden"
                 >
                     {/* Smooth 3D Background */}
                     <div className="absolute inset-0 z-0 opacity-40">

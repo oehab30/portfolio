@@ -46,7 +46,7 @@ export const ProjectsContainer = memo(() => {
         mouseY.set(e.clientY);
       }
     };
-    window.addEventListener("mousemove", handleMouseMove);
+    globalThis.addEventListener("mousemove", handleMouseMove);
 
     const currentRef = scrollRef.current;
     if (currentRef) {
@@ -56,7 +56,7 @@ export const ProjectsContainer = memo(() => {
 
     return () => {
       window.removeEventListener("resize", checkMobile);
-      window.removeEventListener("mousemove", handleMouseMove);
+      globalThis.removeEventListener("mousemove", handleMouseMove);
       currentRef?.removeEventListener("scroll", handleScroll);
     };
   }, [isMobile, mouseX, mouseY]);

@@ -1,4 +1,13 @@
-# Omar Ehab - Frontend Developer Portfolio
+# Omar Ehab — Frontend Developer Portfolio
+
+<!-- =============================== -->
+<!-- HERO / PROJECT PREVIEW IMAGE -->
+<!-- =============================== -->
+
+<p align="center">
+  <!-- Replace with your screenshot or GIF -->
+  <img src="./dist/pictures/perviewpage.jpg" alt="Portfolio Preview" width="100%" />
+</p>
 
 A high-performance, cinematic portfolio built with **React 19**, **Vite**, **Three.js**, and **Tailwind CSS 4**. This project showcases modern web development techniques, including 3D animations, smooth transitions, and a fully responsive design.
 
@@ -8,7 +17,18 @@ A high-performance, cinematic portfolio built with **React 19**, **Vite**, **Thr
 - **Smooth Animations**: Utilizes GSAP and Framer Motion for fluid, high-quality interactions.
 - **Responsive Design**: Fully optimized for all screen sizes, from mobile devices to large desktops.
 - **Dynamic Projects**: Floating image effects and detailed project cards.
-- **Contact Integration**: Fully functional contact form powered by Web3Forms.
+- **Contact Integration**: Fully functional contact form powered by Web3Forms, with Zod schema validation for clean, type-safe input handling and user-friendly error messages.
+
+## 🎨 Color Reference
+
+| Color        | Preview | Hex |
+|-------------|---------|-----|
+| Primary      | ![](https://placehold.co/16x16/7c3aed/7c3aed.png) | `#7c3aed` |
+| Primary Deep | ![](https://placehold.co/16x16/43109a/43109a.png) | `#43109a` |
+| Background  | ![](https://placehold.co/16x16/030014/030014.png) | `#030014` |
+| Light Mode  | ![](https://placehold.co/16x16/ffffff/ffffff.png) | `#ffffff` |
+
+---
 
 ## 🛠️ Tech Stack
 - **Framework**: [React 19](https://react.dev/)
@@ -17,6 +37,11 @@ A high-performance, cinematic portfolio built with **React 19**, **Vite**, **Thr
 - **Animations**: [Framer Motion](https://www.framer.com/motion/), [GSAP](https://greensock.com/gsap/)
 - **3D Graphics**: [Three.js](https://threejs.org/), [@react-three/fiber](https://docs.pmnd.rs/react-three-fiber)
 - **Forms**: [Web3Forms](https://web3forms.com/)
+- **validation**: [Zod](https://zod.dev/)
+
+
+
+
 
 ## 📁 Project Structure
 ```text
@@ -39,7 +64,7 @@ src/
 ## 📦 Installation & Setup
 1. **Clone the repository**:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/oehab30/portfolio.git
    cd portfolio
    ```
 
@@ -58,8 +83,3 @@ src/
    npm run build
    ```
 
-## 🚀 Deployment
-The project is ready to be deployed on platforms like **Vercel**, **Netlify**, or **GitHub Pages**. Simply connect your repository and run the build command: `npm run build`.
-
-## 📄 License
-This project is licensed under the MIT License.

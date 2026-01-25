@@ -11,16 +11,16 @@ const Background = memo(({ children }: BackgroundProps) => {
   const mouseY = useMotionValue(0);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (undefined === globalThis.window) return;
 
     const handleMouseMove = (event: MouseEvent) => {
       mouseX.set(event.clientX);
       mouseY.set(event.clientY);
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    globalThis.window.addEventListener('mousemove', handleMouseMove);
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
+      globalThis.window.removeEventListener('mousemove', handleMouseMove);
     };
   }, [mouseX, mouseY]);
 
@@ -60,7 +60,7 @@ const Background = memo(({ children }: BackgroundProps) => {
           waveAmplitude={3}
           particleSize={1}
           lerpSpeed={0.02}
-          color="#5434a3" // Champagne Gold
+          color="#5434a3" // primary color
           autoAnimate={true}
           particleVariance={5}
         />

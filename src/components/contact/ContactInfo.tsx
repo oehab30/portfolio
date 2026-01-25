@@ -2,7 +2,6 @@ import { memo } from "react";
 import { motion } from "framer-motion";
 import { Mail, MapPin, Github, Linkedin, ExternalLink } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
-import React from "react";
 
 interface ContactInfoCardProps {
   icon: React.ElementType;
@@ -16,7 +15,7 @@ interface ContactInfoCardProps {
 // Component: 
 const ContactInfoCard = memo(({ icon: Icon, label, value, link, color, index }: ContactInfoCardProps) => (
   <motion.a
-    href={link} target="_blank" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.1 }}
+    href={link} target="_blank"  rel="noopener noreferrer"  initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.1 }}
     className="group flex items-center gap-4 sm:gap-6 p-4 sm:p-6 rounded-2xl bg-secondary/30 dark:bg-foreground/5 border border-border hover:border-primary/50 transition-all duration-300"
     aria-label={`${label}: ${value}`}
   >
@@ -57,6 +56,8 @@ export const ContactDetails = memo(() => {
             whileHover={{ y: -5 }} 
             className="w-70 h-12 rounded-xl bg-secondary/50 dark:bg-foreground/5 border border-border flex items-center justify-center text-muted-foreground hover:text-primary transition-all px-6"
             aria-label={social.label}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <social.icon size={20} aria-hidden="true" />
             <span className="ml-3">{social.label}</span>

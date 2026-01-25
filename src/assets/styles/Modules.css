@@ -18,6 +18,9 @@
   --background: #ffffff;
   --foreground: #0f172a;
   
+  /* Global Header Control */
+  --header-color: #000000; 
+
   --card: #f8fafc;
   --card-foreground: #0f172a;
   --popover: #ffffff;
@@ -95,6 +98,10 @@
   /* Obsidian - Cinematic Dark Atmosphere */
   --background: #030014;
   --foreground: #e2e8f0;
+  
+  /* Global Header Control */
+  --header-color: #ffffff;
+
   --card: #0f0720;
   --card-foreground: #e2e8f0;
   --popover: #0f0720;
@@ -132,6 +139,7 @@
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading tracking-tight;
+    color: var(--header-color);
   }
 }
 

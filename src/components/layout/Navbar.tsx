@@ -28,7 +28,7 @@ const Navbar = memo(() => {
         <ul className="flex flex-col gap-8 text-[10px] font-bold tracking-widest ">
           {links.map((item) => (
             <li key={item.href}>
-              <Magnetic strength={0.20}>
+              <Magnetic strength={0.2}>
                 <a
                   href={item.href}
                   onClick={(e) => handleScroll(e, item.href)}

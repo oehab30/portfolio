@@ -10,7 +10,7 @@ const CustomCursor = () => {
 
     useEffect(() => {
         const checkTouch = () => {
-            setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+            setIsTouchDevice('ontouchstart' in globalThis || navigator.maxTouchPoints > 0);
         };
         checkTouch();
 

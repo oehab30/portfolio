@@ -1,18 +1,84 @@
 import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
-import { Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+import { z } from "zod";
 import { ContactInput } from "./ContactInput";
+import { ContactSubmitButton } from "./ContactSubmitButton";
+
+const blockedDomains = ["mailinator.com", "tempmail.com"];
+
+export const contactSchema = z.object({
+  name: z
+    .string()
+    .trim()
+    .min(2, "Name must be at least 2 characters")
+    .regex(/^[a-zA-Z\s'-]+$/, "Name contains invalid characters"),
+
+  email: z
+    .string()
+    .trim()
+    .toLowerCase()
+    .email("Please enter a valid email address")
+    .refine(
+      (email) =>
+        !blockedDomains.some((domain) => email.endsWith(`@${domain}`)),
+      { message: "Please use a valid email address" }
+    ),
+
+  message: z
+    .string()
+    .trim()
+    .min(10, "Message must be at least 10 characters")
+    .max(1000, "Message must be under 1000 characters"),
+
+  honeypot: z
+    .string()
+    .optional()
+    .refine((v) => !v || v.trim().length === 0, { message: "Spam detected" }),
+});
+
+
+
+type ContactFormState = z.infer<typeof contactSchema>;
 
 export const ContactForm = () => {
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [form, setForm] = useState<ContactFormState>({ name: '', email: '', message: '' });
+  const [errors, setErrors] = useState<Partial<ContactFormState>>({});
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
 
-  const handleChange = useCallback((field: keyof typeof form) => (value: string) => {
+  const handleChange = useCallback((field: keyof ContactFormState) => (value: string) => {
     setForm(prev => ({ ...prev, [field]: value }));
-  }, []);
+    // Clear error when user starts typing
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: undefined }));
+    }
+  }, [errors]);
+
+  const validateForm = () => {
+    try {
+      contactSchema.parse(form);
+      setErrors({});
+      return true;
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const newErrors: Partial<ContactFormState> = {};
+        (error).issues.forEach((err) => {
+          if (err.path[0]) {
+            newErrors[err.path[0] as keyof ContactFormState] = err.message;
+          }
+        });
+        setErrors(newErrors);
+      }
+      return false;
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+
     setStatus('sending');
 
     try {
@@ -47,26 +113,7 @@ export const ContactForm = () => {
       setStatus('error');
     }
   };
-
-  const getButtonContent = () => {
-    switch (status) {
-      case 'sending':
-        return <><Loader2 className="animate-spin" size={16}/> Sending...</>;
-      case 'sent':
-        return <><CheckCircle size={16}/> Sent Successfully!</>;
-      case 'error':
-        return <><AlertCircle size={16}/> Failed. Try Again.</>;
-      default:
-        return <><Send size={16}/> Send Message</>;
-    }
-  };
-
-  const getButtonStyles = () => {
-    if (status === 'sent') return 'bg-green-500/10 text-green-500 border border-green-500/20';
-    if (status === 'error') return 'bg-red-500/10 text-red-500 border border-red-500/20';
-    return 'bg-primary text-primary-foreground hover:brightness-110 shadow-lg shadow-primary/20';
-  };
-
+  
   return (
     <motion.div 
       initial={{ opacity: 0, x: 50 }} 
@@ -79,6 +126,7 @@ export const ContactForm = () => {
         onSubmit={handleSubmit} 
         className="relative bg-background/60 dark:bg-foreground/3 backdrop-blur-xl border border-border p-8 md:p-12 rounded-[2.5rem] space-y-8 shadow-2xl"
         aria-label="Contact form"
+        noValidate
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <ContactInput 
@@ -89,6 +137,7 @@ export const ContactForm = () => {
             onChange={handleChange('name')} 
             placeholder="Your Name" 
             autoComplete="name"
+            error={errors.name}
           />
           <ContactInput 
             label="Email" 
@@ -99,6 +148,7 @@ export const ContactForm = () => {
             onChange={handleChange('email')} 
             placeholder="Email@example.com" 
             autoComplete="email"
+            error={errors.email}
           />
         </div>
         <ContactInput 
@@ -109,25 +159,10 @@ export const ContactForm = () => {
           value={form.message} 
           onChange={handleChange('message')} 
           placeholder="Your project details..." 
+          error={errors.message}
         />
         
-        {/* Live Region for Status Updates */}
-        <div className="relative">
-             <motion.button 
-            disabled={status === 'sending' || status === 'sent'}
-            className={`w-full py-5 rounded-2xl font-bold uppercase text-xs flex items-center justify-center gap-3 transition-all ${getButtonStyles()}`}
-            aria-busy={status === 'sending'}
-          >
-            {getButtonContent()}
-          </motion.button>
-
-          {/* Accessible Live Region */}
-          <output className="sr-only" role="status" aria-live="polite">
-            {status === 'sending' && "Sending message..."}
-            {status === 'sent' && "Message sent successfully!"}
-            {status === 'error' && "Error sending message. Please try again."}
-          </output>
-        </div>
+        <ContactSubmitButton status={status} />
       </form>
     </motion.div>
   );

@@ -4,16 +4,16 @@ import { Sun, Moon } from 'lucide-react';
 
 const FloatingDarkToggle = memo(() => {
   const [isDark, setIsDark] = useState(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof globalThis !== 'undefined') {
       const saved = localStorage.getItem('theme');
       if (saved) return saved === 'dark';
-      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+      return globalThis.matchMedia('(prefers-color-scheme: dark)').matches;
     }
     return false;
   });
 
   useEffect(() => {
-    const root = window.document.documentElement;
+    const root = globalThis.document.documentElement;
     if (isDark) {
       root.classList.add('dark');
       localStorage.setItem('theme', 'dark');
