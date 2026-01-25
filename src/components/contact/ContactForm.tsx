@@ -6,7 +6,7 @@ import { ContactSubmitButton } from "./ContactSubmitButton";
 
 const blockedDomains = ["mailinator.com", "tempmail.com"];
 
-export const contactSchema = z.object({
+const contactSchema = z.object({
   name: z
     .string()
     .trim()
