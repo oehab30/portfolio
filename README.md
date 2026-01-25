@@ -6,7 +6,7 @@
 
 <p align="center">
   <!-- Replace with your screenshot or GIF -->
-  <img src="/public//pictures/cava.jpg" alt="Portfolio Preview" width="100%" />
+  <img src="./public/pictures/previewpage.jpg" alt="Portfolio Preview" width="100%" />
 </p>
 
 A high-performance, cinematic portfolio built with **React 19**, **Vite**, **Three.js**, and **Tailwind CSS 4**. This project showcases modern web development techniques, including 3D animations, smooth transitions, and a fully responsive design.
