@@ -1,85 +1,79 @@
-# Omar Ehab — Frontend Developer Portfolio
+<div align="center">
 
-<!-- =============================== -->
-<!-- HERO / PROJECT PREVIEW IMAGE -->
-<!-- =============================== -->
+<!-- Animated Wave Header -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0ea5e9,100:6366f1&height=220&section=header&text=Omar%20Ehab&fontSize=50&fontColor=ffffff&animation=fadeIn&fontAlignY=38"/>
 
-<p align="center">
-  <!-- Replace with your screenshot or GIF -->
-  <img src="./dist/pictures/perviewpage.jpg" alt="Portfolio Preview" width="100%" />
-</p>
+<!-- Typing Animation -->
+<img src="https://readme-typing-svg.herokuapp.com?font=Inter&size=24&duration=2500&pause=700&color=38BDF8&center=true&vCenter=true&width=700&lines=Front-End+Developer;React+%7C+TypeScript+%7C+Tailwind+CSS;I+Build+Animated+Modern+UI;Clean+Code+%26+Smooth+UX"/>
 
-A high-performance, cinematic portfolio built with **React 19**, **Vite**, **Three.js**, and **Tailwind CSS 4**. This project showcases modern web development techniques, including 3D animations, smooth transitions, and a fully responsive design.
-
-## 🚀 Features
-- **Cinematic Experience**: Immersive 3D loader and background effects using Three.js and Framer Motion.
-- **Modern Tech Stack**: Built with React 19 and Tailwind CSS 4 for cutting-edge performance and styling.
-- **Smooth Animations**: Utilizes GSAP and Framer Motion for fluid, high-quality interactions.
-- **Responsive Design**: Fully optimized for all screen sizes, from mobile devices to large desktops.
-- **Dynamic Projects**: Floating image effects and detailed project cards.
-- **Contact Integration**: Fully functional contact form powered by Web3Forms, with Zod schema validation for clean, type-safe input handling and user-friendly error messages.
-
-## 🎨 Color Reference
-
-| Color        | Preview | Hex |
-|-------------|---------|-----|
-| Primary      | ![](https://placehold.co/16x16/7c3aed/7c3aed.png) | `#7c3aed` |
-| Primary Deep | ![](https://placehold.co/16x16/43109a/43109a.png) | `#43109a` |
-| Background  | ![](https://placehold.co/16x16/030014/030014.png) | `#030014` |
-| Light Mode  | ![](https://placehold.co/16x16/ffffff/ffffff.png) | `#ffffff` |
+</div>
 
 ---
 
-## 🛠️ Tech Stack
-- **Framework**: [React 19](https://react.dev/)
-- **Build Tool**: [Vite](https://vitejs.dev/)
-- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/), [Lucide React](https://lucide.dev/), [React Icons](https://react-icons.github.io/react-icons/)
-- **Animations**: [Framer Motion](https://www.framer.com/motion/), [GSAP](https://greensock.com/gsap/)
-- **3D Graphics**: [Three.js](https://threejs.org/), [@react-three/fiber](https://docs.pmnd.rs/react-three-fiber)
-- **Forms**: [Web3Forms](https://web3forms.com/)
-- **validation**: [Zod](https://zod.dev/)
+<img align="right" width="280" style="border-radius: 10px;" alt="Animated Gif" margin="10px" src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif"/>
+## 🚀 About Me
+
+
+🎨 **Frontend Developer** focused on **high-performance, animated, and scalable UI**.
+
+- ⚛️ React & TypeScript specialist  
+- 🎬 Heavy animations & micro-interactions  
+- 🎯 UI/UX & performance driven  
+- 📱 Mobile-first responsive design  
+- 🧠 Clean architecture & reusable components  
+
+---
+
+## 🧩 Tech Stack (Animated Vibes)
+
+<div align="center" style="margin: 10px;">
+
+<img src="https://skillicons.dev/icons?i=react,ts,js,tailwind,html,css&theme=dark" />
+<br/>
+<img src="https://skillicons.dev/icons?i=git,github,vercel&theme=dark" />
+
+</div>
+
+---
+
+## 🎬 Animation Tools I Use
+- 🌀 Framer Motion  
+- 🎥 CSS Animations & Transitions  
+- 💫 Micro-interactions  
+- 🎯 Smooth page transitions  
+- 🧠 Performance-optimized motion  
+
+---
+
+## 📊 Live GitHub Activity (Animated)
+
+<div align="center" style="margin: 10px; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; ">
+
+<img src="https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical" height="170"/>
+
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact&theme=tokyonight&hide_border=true"/>
+
+
+</div>
 
 
 
 
+## 🌐 Connect With Me (Animated Buttons)
 
-## 📁 Project Structure
-```text
-src/
-├── assets/         # Styles and static assets
-├── components/     # Reusable UI components
-│   ├── about/      # About section components
-│   ├── common/     # Shared components (Loader, etc.)
-│   ├── contact/    # Contact form and info
-│   ├── hero/       # Hero section with 3D elements
-│   ├── layout/     # Page layout (Navbar, etc.)
-│   ├── projects/   # Project showcase
-│   ├── stack/      # Tech stack visualization
-│   └── ui/         # Base UI components
-├── lib/            # Utilities
-├── pages/          # Main page components
-└── routes/         # Routing configuration
-```
+<div align="center">
 
-## 📦 Installation & Setup
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/oehab30/portfolio.git
-   cd portfolio
-   ```
+<a href="YOUR_LINK">
+  <img src="https://img.shields.io/badge/LinkedIn-0ea5e9?style=for-the-badge&logo=linkedin&logoColor=white"/>
+</a>
+<a href="YOUR_LINK">
+  <img src="https://img.shields.io/badge/Portfolio-6366f1?style=for-the-badge&logo=vercel&logoColor=white"/>
+</a>
+<a href="mailto:YOUR_EMAIL">
+  <img src="https://img.shields.io/badge/Email-0f172a?style=for-the-badge&logo=gmail&logoColor=white"/>
+</a>
 
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
+</div>
 
-3. **Run the development server**:
-   ```bash
-   npm run dev
-   ```
-
-4. **Build for production**:
-   ```bash
-   npm run build
-   ```
+---
 
