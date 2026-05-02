@@ -15,20 +15,27 @@ export const projects = [
   },
   {
     id: "03",
+    title: "Bakery",
+    category: "React 19 • TypeScript • Tailwind CSS",
+    image: "/pictures/SweetRise.jpg",
+    link: "https://bakery-delta-liart.vercel.app/"
+  },
+  {
+    id: "04",
     title: "Cavashop",
     category: "HTML • CSS ",
     image: "/pictures/cava.jpg",
     link: "https://oehab30.github.io/cavashop/home"
   },
   {
-    id: "04",
+    id: "05",
     title: "Cineplay",
     category: "React 18 • TypeScript • Tailwind CSS • shadcn ui • axios •",
     image: "/pictures/cineplay.jpg",
     link: "#"
   },
   {
-    id: "05",
+    id: "06",
     title: "Nike Commerce",
     category: "React 18 • TypeScript • Tailwind CSS • shadcn ui • axios •",
     image: "/pictures/Nike.jpg",
