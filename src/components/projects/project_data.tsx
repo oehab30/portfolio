@@ -22,20 +22,27 @@ export const projects = [
   },
   {
     id: "04",
+    title: "Productivity Hub",
+    category: "React 19 • JavaScript • Tailwind CSS",
+    image: "/pictures/Productivity Hub.png",
+    link: "https://todolist-kappa-azure.vercel.app/"
+  },
+  {
+    id: "05",
     title: "Cavashop",
     category: "HTML • CSS ",
     image: "/pictures/cava.jpg",
     link: "https://oehab30.github.io/cavashop/home"
   },
   {
-    id: "05",
+    id: "06",
     title: "Cineplay",
     category: "React 18 • TypeScript • Tailwind CSS • shadcn ui • axios •",
     image: "/pictures/cineplay.jpg",
     link: "#"
   },
   {
-    id: "06",
+    id: "07",
     title: "Nike Commerce",
     category: "React 18 • TypeScript • Tailwind CSS • shadcn ui • axios •",
     image: "/pictures/Nike.jpg",
